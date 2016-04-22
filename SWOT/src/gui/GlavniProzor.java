@@ -57,7 +57,7 @@ public class GlavniProzor extends JFrame {
 	 */
 	public GlavniProzor() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 548, 369);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -105,7 +105,7 @@ public class GlavniProzor extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.setLayout(new GridLayout(2, 2, 0, 0));
+			panel.setLayout(new GridLayout(2, 2, 8, 8));
 			panel.add(getSnage());
 			panel.add(getSlabosti());
 			panel.add(getSanse());
@@ -183,4 +183,5 @@ public class GlavniProzor extends JFrame {
 		}
 		return btnKreirajStrategiju;
 	}
+	
 }
