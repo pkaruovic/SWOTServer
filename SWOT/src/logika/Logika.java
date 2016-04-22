@@ -5,16 +5,16 @@ import java.util.List;
 
 public class Logika {
 	private List<Strategija> strategije;
-	private List<Snaga> listaSnage;
-	private List<Slabost> listaSlabosti;
-	private List<Sansa> listaSanse;
-	private List<Pretnja> listaPretnje;
+	private List<Swot> listaSnage;
+	private List<Swot> listaSlabosti;
+	private List<Swot> listaSanse;
+	private List<Swot> listaPretnje;
 	public Logika() {
 		strategije = new ArrayList<Strategija>();
-		listaSnage = new ArrayList<Snaga>();
-		listaSlabosti = new ArrayList<Slabost>();
-		listaSanse = new ArrayList<Sansa>();
-		listaPretnje = new ArrayList<Pretnja>();
+		listaSnage = new ArrayList<Swot>();
+		listaSlabosti = new ArrayList<Swot>();
+		listaSanse = new ArrayList<Swot>();
+		listaPretnje = new ArrayList<Swot>();
 	}
 	
 	

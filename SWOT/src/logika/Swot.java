@@ -1,13 +1,13 @@
 package logika;
 
-public class Snaga {
+public class Swot {
 	private String naziv;
 	private double ponder;
-	public Snaga(String naziv, double ponder) {
+	public Swot(String naziv, double ponder) {
 		if(naziv == null || naziv.isEmpty())
-			throw new RuntimeException("Snaga - naziv");
+			throw new RuntimeException("naziv");
 		if(ponder < 0 || ponder > 1)
-			throw new RuntimeException("Snaga - ponder");
+			throw new RuntimeException("ponder");
 		this.naziv = naziv;
 		this.ponder = ponder;
 	}
@@ -16,7 +16,7 @@ public class Snaga {
 	}
 	public void setNaziv(String naziv) {
 		if(naziv == null || naziv.isEmpty())
-			throw new RuntimeException("Snaga - naziv");
+			throw new RuntimeException("naziv");
 		this.naziv = naziv;
 	}
 	public double getPonder() {
@@ -24,9 +24,7 @@ public class Snaga {
 	}
 	public void setPonder(double ponder) {
 		if(ponder < 0 || ponder > 1)
-			throw new RuntimeException("Snaga - ponder");
+			throw new RuntimeException("ponder");
 		this.ponder = ponder;
 	}
-	
-	
 }
