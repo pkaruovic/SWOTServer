@@ -12,6 +12,10 @@ public class Strategija {
 	private List<SwotStrat> sanse;
 	private List<SwotStrat> pretnje;
 	
+	public Strategija() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Strategija(String naziv) {
 		this.naziv = naziv;
 		snage = new ArrayList<SwotStrat>();

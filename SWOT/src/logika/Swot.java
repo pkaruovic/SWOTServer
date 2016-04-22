@@ -3,27 +3,32 @@ package logika;
 public class Swot {
 	private String naziv;
 	private double ponder;
+
 	public Swot(String naziv, double ponder) {
-		if(naziv == null || naziv.isEmpty())
+		if (naziv == null || naziv.isEmpty())
 			throw new RuntimeException("naziv");
-		if(ponder < 0 || ponder > 1)
+		if (ponder < 0 || ponder > 1)
 			throw new RuntimeException("ponder");
 		this.naziv = naziv;
 		this.ponder = ponder;
 	}
+
 	public String getNaziv() {
 		return naziv;
 	}
+
 	public void setNaziv(String naziv) {
-		if(naziv == null || naziv.isEmpty())
+		if (naziv == null || naziv.isEmpty())
 			throw new RuntimeException("naziv");
 		this.naziv = naziv;
 	}
+
 	public double getPonder() {
 		return ponder;
 	}
+
 	public void setPonder(double ponder) {
-		if(ponder < 0 || ponder > 1)
+		if (ponder < 0 || ponder > 1)
 			throw new RuntimeException("ponder");
 		this.ponder = ponder;
 	}
