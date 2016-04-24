@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kontrola.Kontroler;
 import logika.Logika;
 import logika.Swot;
 import tablemodel.ModelTabele;
@@ -21,6 +22,8 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GlavniProzor extends JFrame {
 
@@ -39,10 +42,12 @@ public class GlavniProzor extends JFrame {
 	private JPanel panel_1;
 	private JButton btnUporediStrategije;
 	private JButton btnKreirajStrategiju;
+	private JButton btnSwot;
 
 	public GlavniProzor() {
+		setPreferredSize(new Dimension(800, 600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 581, 369);
+		setBounds(100, 100, 900, 700);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -101,7 +106,7 @@ public class GlavniProzor extends JFrame {
 	private JTable getSnage() {
 		if (Snage == null) {
 			Snage = new JTable();
-			Snage.setModel(new ModelTabele(Logika.getListaSnage()));
+			Snage.setModel(new ModelTabele(Kontroler.getListaSnage()));
 			Snage.setShowGrid(true);
 			Snage.setShowVerticalLines(true);
 			Snage.setShowHorizontalLines(true);
@@ -111,7 +116,7 @@ public class GlavniProzor extends JFrame {
 	private JTable getSlabosti() {
 		if (Slabosti == null) {
 			Slabosti = new JTable();
-			Slabosti.setModel(new ModelTabele(Logika.getListaSlabosti()));
+			Slabosti.setModel(new ModelTabele(Kontroler.getListaSlabosti()));
 			Slabosti.setShowGrid(true);
 			Slabosti.setShowVerticalLines(true);
 			Slabosti.setShowHorizontalLines(true);
@@ -121,7 +126,7 @@ public class GlavniProzor extends JFrame {
 	private JTable getSanse() {
 		if (Sanse == null) {
 			Sanse = new JTable();
-			Sanse.setModel(new ModelTabele(Logika.getListaSanse()));
+			Sanse.setModel(new ModelTabele(Kontroler.getListaSanse()));
 			Sanse.setShowGrid(true);
 			Sanse.setShowVerticalLines(true);
 			Sanse.setShowHorizontalLines(true);
@@ -131,7 +136,7 @@ public class GlavniProzor extends JFrame {
 	private JTable getPretnje() {
 		if (Pretnje == null) {
 			Pretnje = new JTable();
-			Pretnje.setModel(new ModelTabele(Logika.getListaPretnje()));
+			Pretnje.setModel(new ModelTabele(Kontroler.getListaPretnje()));
 			Pretnje.setShowGrid(true);
 			Pretnje.setShowVerticalLines(true);
 			Pretnje.setShowHorizontalLines(true);
@@ -149,6 +154,7 @@ public class GlavniProzor extends JFrame {
 			panel_1 = new JPanel();
 			panel_1.setPreferredSize(new Dimension(140, 10));
 			panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+			panel_1.add(getBtnSwot());
 			panel_1.add(getBtnKreirajStrategiju());
 			panel_1.add(getBtnUporediStrategije());
 		}
@@ -164,9 +170,27 @@ public class GlavniProzor extends JFrame {
 	private JButton getBtnKreirajStrategiju() {
 		if (btnKreirajStrategiju == null) {
 			btnKreirajStrategiju = new JButton(" Kreiraj strategiju");
+			btnKreirajStrategiju.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIStrategija prozorNovaStrategija = new GUIStrategija();
+					prozorNovaStrategija.setVisible(true);
+				}
+			});
 			btnKreirajStrategiju.setPreferredSize(new Dimension(130, 23));
 		}
 		return btnKreirajStrategiju;
 	}
-	
+	private JButton getBtnSwot() {
+		if (btnSwot == null) {
+			btnSwot = new JButton("SWOT");
+			btnSwot.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					ProzorNoviSwot prozorNoviSwot = new ProzorNoviSwot();
+					prozorNoviSwot.setVisible(true);
+				}
+			});
+			btnSwot.setPreferredSize(new Dimension(130, 20));
+		}
+		return btnSwot;
+	}
 }
