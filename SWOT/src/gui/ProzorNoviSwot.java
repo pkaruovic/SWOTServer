@@ -6,11 +6,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import kontrola.Kontroler;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Dimension;
 import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ProzorNoviSwot extends JFrame {
 
@@ -27,14 +33,14 @@ public class ProzorNoviSwot extends JFrame {
 	private JPanel panel_1;
 	private JButton btnSacuvaj;
 	private JButton btnOtkazi;
-
+	private ButtonGroup grupnjak;
 
 	/**
 	 * Create the frame.
 	 */
 	public ProzorNoviSwot() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 281, 177);
+		setBounds(100, 100, 302, 187);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -42,9 +48,20 @@ public class ProzorNoviSwot extends JFrame {
 		contentPane.add(getPanel(), BorderLayout.CENTER);
 		contentPane.add(getPanel_1(), BorderLayout.SOUTH);
 		setLocationRelativeTo(null);
+		getGrupnjak();
 		
 	}
-
+	private ButtonGroup getGrupnjak(){
+		if(grupnjak == null){
+			grupnjak = new ButtonGroup();
+			grupnjak.add(getRdbtnSnaga());
+			grupnjak.add(getRdbtnSlabost());
+			grupnjak.add(getRdbtnSansa());
+			grupnjak.add(getRdbtnPretnja());
+			
+		}
+		return grupnjak;
+	}
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
@@ -124,6 +141,13 @@ public class ProzorNoviSwot extends JFrame {
 	private JButton getBtnSacuvaj() {
 		if (btnSacuvaj == null) {
 			btnSacuvaj = new JButton("Sacuvaj");
+			btnSacuvaj.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(rdbtnSnaga.isSelected()){
+						Kontroler.dodajSnagu(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
+					}
+				}
+			});
 		}
 		return btnSacuvaj;
 	}
