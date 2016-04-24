@@ -39,8 +39,10 @@ public class GlavniProzor extends JFrame {
 	private JPanel panel_1;
 	private JButton btnUporediStrategije;
 	private JButton btnKreirajStrategiju;
+	private JButton btnDodaj;
 
 	public GlavniProzor() {
+		setTitle("SWOT");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 581, 369);
 		setJMenuBar(getMenuBar_1());
@@ -151,6 +153,7 @@ public class GlavniProzor extends JFrame {
 			panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			panel_1.add(getBtnKreirajStrategiju());
 			panel_1.add(getBtnUporediStrategije());
+			panel_1.add(getBtnDodaj());
 		}
 		return panel_1;
 	}
@@ -169,4 +172,11 @@ public class GlavniProzor extends JFrame {
 		return btnKreirajStrategiju;
 	}
 	
+	private JButton getBtnDodaj() {
+		if (btnDodaj == null) {
+			btnDodaj = new JButton("Dodaj");
+			btnDodaj.setPreferredSize(new Dimension(130, 23));
+		}
+		return btnDodaj;
+	}
 }

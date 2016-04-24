@@ -9,10 +9,14 @@ import logika.Swot;
 
 public class ModelTabele extends AbstractTableModel{
 	private ArrayList<Swot> podaci;
-	private String[] heder = new String[]{"Naziv", "Ponder"};
+	private String[] nazivKolone = new String[]{"Naziv", "Ponder"};
 	
 	public ModelTabele(ArrayList<Swot> lista) {
-		podaci = lista;
+		if(lista == null){
+			lista = new ArrayList<Swot>();
+		}else{
+			podaci = lista;
+		}
 	}
 	
 	@Override
@@ -25,35 +29,30 @@ public class ModelTabele extends AbstractTableModel{
 		}
 	@Override
 	public String getColumnName(int column) {
-		return heder[column];
+		return nazivKolone[column];
 	}
 	
 	@Override
 	public int getColumnCount() {
-		return 2;
+		return nazivKolone.length;
 	}
 
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
-		return podaci.size()+1;
+		return podaci.size();
 	}
 
 	@Override
 	public Object getValueAt(int red, int kolona) {
-		if(podaci.size() != 0){
-			switch(kolona){
-		case 0:
-			return podaci.get(red).getNaziv();
-		case 1:
-			return podaci.get(red).getPonder();
-		}
-	}
-		return null;
-	}
-	
-	@Override
-	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+		Swot pom = podaci.get(red);
 		
+		switch(kolona){
+		case 0:
+			return pom.getNaziv();
+		case 1:
+			return pom.getPonder();
+		}
+		return null;
 	}
 }
