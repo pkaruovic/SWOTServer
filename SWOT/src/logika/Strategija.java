@@ -1,9 +1,10 @@
 package logika;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Strategija {
+public class Strategija implements Serializable{
 	private String naziv;
 	private double sumaUkupnihAtraktivnosti;
 	

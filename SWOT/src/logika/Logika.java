@@ -1,9 +1,10 @@
 package logika;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Logika {
+public class Logika implements Serializable{
 	private ArrayList<Strategija> strategije = new ArrayList<Strategija>();
 	private ArrayList<Swot> listaSnage = new ArrayList<Swot>();
 	private ArrayList<Swot> listaSlabosti = new ArrayList<Swot>();
