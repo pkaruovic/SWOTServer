@@ -58,6 +58,9 @@ public class Logika {
 		this.listaPretnje = listaPretnje;
 	}
 	
+	public void dodajStrategijuUListu(Strategija strategija){
+		strategije.add(strategija);
+	}
 	public void dodajSnaguUListu(String naziv, double ponder){
 		listaSnage.add(new Swot(naziv, ponder));
 	}
