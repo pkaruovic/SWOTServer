@@ -46,7 +46,7 @@ public class Kontroler {
 	}
 
 	public static void dodajStrategiju(Strategija strategija) {
-
+		logika.dodajStrategijuUListu(strategija);
 	}
 
 	public static void dodajSnagu(String naziv, double ponder) {
