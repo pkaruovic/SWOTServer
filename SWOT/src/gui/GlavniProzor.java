@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import kontrola.Kontroler;
 import logika.Logika;
 import logika.Swot;
 import tablemodel.ModelTabele;
@@ -21,6 +22,12 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
 import java.awt.Dimension;
+import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GlavniProzor extends JFrame {
 
@@ -40,6 +47,11 @@ public class GlavniProzor extends JFrame {
 	private JButton btnUporediStrategije;
 	private JButton btnKreirajStrategiju;
 	private JButton btnDodaj;
+	private JMenuItem mntmExit;
+	private JScrollPane scrollPane;
+	private JScrollPane scrollPane_1;
+	private JScrollPane scrollPane_2;
+	private JScrollPane scrollPane_3;
 
 	public GlavniProzor() {
 		setTitle("SWOT");
@@ -68,6 +80,7 @@ public class GlavniProzor extends JFrame {
 			mnFile.add(getMntmNew());
 			mnFile.add(getMntmOpen());
 			mnFile.add(getMntmSave());
+			mnFile.add(getMntmExit());
 		}
 		return mnFile;
 	}
@@ -80,12 +93,14 @@ public class GlavniProzor extends JFrame {
 	private JMenuItem getMntmOpen() {
 		if (mntmOpen == null) {
 			mntmOpen = new JMenuItem("Open");
+			mntmOpen.setIcon(new ImageIcon(GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/TreeOpen.gif")));
 		}
 		return mntmOpen;
 	}
 	private JMenuItem getMntmSave() {
 		if (mntmSave == null) {
 			mntmSave = new JMenuItem("Save");
+			mntmSave.setIcon(new ImageIcon(GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/FloppyDrive.gif")));
 		}
 		return mntmSave;
 	}
@@ -93,10 +108,10 @@ public class GlavniProzor extends JFrame {
 		if (panel == null) {
 			panel = new JPanel();
 			panel.setLayout(new GridLayout(2, 2, 8, 8));
-			panel.add(getSnage());
-			panel.add(getSlabosti());
-			panel.add(getSanse());
-			panel.add(getPretnje());
+			panel.add(getScrollPane());
+			panel.add(getScrollPane_1());
+			panel.add(getScrollPane_2());
+			panel.add(getScrollPane_3());
 		}
 		return panel;
 	}
@@ -106,7 +121,8 @@ public class GlavniProzor extends JFrame {
 			Snage.setModel(new ModelTabele(Logika.getListaSnage()));
 			Snage.setShowGrid(true);
 			Snage.setShowVerticalLines(true);
-			Snage.setShowHorizontalLines(true);
+			Snage.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+			Snage.getColumnModel().getColumn(1).setPreferredWidth(10);
 		}
 		return Snage;
 	}
@@ -116,7 +132,8 @@ public class GlavniProzor extends JFrame {
 			Slabosti.setModel(new ModelTabele(Logika.getListaSlabosti()));
 			Slabosti.setShowGrid(true);
 			Slabosti.setShowVerticalLines(true);
-			Slabosti.setShowHorizontalLines(true);
+			Slabosti.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+			Slabosti.getColumnModel().getColumn(1).setPreferredWidth(10);
 		}
 		return Slabosti;
 	}
@@ -126,7 +143,8 @@ public class GlavniProzor extends JFrame {
 			Sanse.setModel(new ModelTabele(Logika.getListaSanse()));
 			Sanse.setShowGrid(true);
 			Sanse.setShowVerticalLines(true);
-			Sanse.setShowHorizontalLines(true);
+			Sanse.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+			Sanse.getColumnModel().getColumn(1).setPreferredWidth(10);
 		}
 		return Sanse;
 	}
@@ -135,14 +153,15 @@ public class GlavniProzor extends JFrame {
 			Pretnje = new JTable();
 			Pretnje.setModel(new ModelTabele(Logika.getListaPretnje()));
 			Pretnje.setShowGrid(true);
-			Pretnje.setShowVerticalLines(true);
-			Pretnje.setShowHorizontalLines(true);
+			Pretnje.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+			Pretnje.getColumnModel().getColumn(1).setPreferredWidth(10);
 		}
 		return Pretnje;
 	}
 	private JMenuItem getMntmNew() {
 		if (mntmNew == null) {
 			mntmNew = new JMenuItem("New");
+			mntmNew.setIcon(new ImageIcon(GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/UpFolder.gif")));
 		}
 		return mntmNew;
 	}
@@ -178,5 +197,45 @@ public class GlavniProzor extends JFrame {
 			btnDodaj.setPreferredSize(new Dimension(130, 23));
 		}
 		return btnDodaj;
+	}
+	private JMenuItem getMntmExit() {
+		if (mntmExit == null) {
+			mntmExit = new JMenuItem("Exit");
+			mntmExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Kontroler.ugasiAplikaciju();
+				}
+			});
+			mntmExit.setIcon(new ImageIcon(GlavniProzor.class.getResource("/javax/swing/plaf/metal/icons/ocean/close.gif")));
+		}
+		return mntmExit;
+	}
+	private JScrollPane getScrollPane() {
+		if (scrollPane == null) {
+			scrollPane = new JScrollPane();
+			scrollPane.setViewportView(getSnage());
+		}
+		return scrollPane;
+	}
+	private JScrollPane getScrollPane_1() {
+		if (scrollPane_1 == null) {
+			scrollPane_1 = new JScrollPane();
+			scrollPane_1.setViewportView(getSlabosti());
+		}
+		return scrollPane_1;
+	}
+	private JScrollPane getScrollPane_2() {
+		if (scrollPane_2 == null) {
+			scrollPane_2 = new JScrollPane();
+			scrollPane_2.setViewportView(getSanse());
+		}
+		return scrollPane_2;
+	}
+	private JScrollPane getScrollPane_3() {
+		if (scrollPane_3 == null) {
+			scrollPane_3 = new JScrollPane();
+			scrollPane_3.setViewportView(getPretnje());
+		}
+		return scrollPane_3;
 	}
 }

@@ -21,10 +21,6 @@ public class ModelTabele extends AbstractTableModel{
 	
 	@Override
 		public boolean isCellEditable(int rowIndex, int columnIndex) {
-			if(rowIndex == podaci.size()){
-				return true;
-			}
-		
 			return false;
 		}
 	@Override

@@ -2,6 +2,8 @@ package kontrola;
 
 import java.awt.EventQueue;
 
+import javax.swing.JOptionPane;
+
 import gui.GUIDodajSWOT;
 import gui.GlavniProzor;
 import logika.Logika;
@@ -13,16 +15,22 @@ public class Kontroler {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-//					prozor = new GlavniProzor();
-//					prozor.setVisible(true);
-					GUIDodajSWOT frame = new GUIDodajSWOT();
-					frame.setVisible(true);
-					
+					prozor = new GlavniProzor();
+					prozor.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+	}
+
+	public static void ugasiAplikaciju() {
+		int ugasi = JOptionPane.showConfirmDialog(prozor.getContentPane(), "Da li zelite da ugasite program?", "Ugasi", JOptionPane.YES_NO_OPTION);
+		
+		if(ugasi == JOptionPane.YES_OPTION){
+			System.exit(0);
+		}
 	}
 	
 }
