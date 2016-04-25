@@ -1,6 +1,8 @@
 package logika;
 
-public class SwotStrat extends Swot {
+import java.io.Serializable;
+
+public class SwotStrat extends Swot implements Serializable{
 	private int atraktivnost;
 	private double ukupnaAtraktivnost;
 

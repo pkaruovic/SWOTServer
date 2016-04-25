@@ -1,9 +1,10 @@
 package logika;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Logika {
+public class Logika implements Serializable{
 	private ArrayList<Strategija> strategije = new ArrayList<Strategija>();
 	private ArrayList<Swot> listaSnage = new ArrayList<Swot>();
 	private ArrayList<Swot> listaSlabosti = new ArrayList<Swot>();
@@ -59,6 +60,12 @@ public class Logika {
 	}
 	
 	public void dodajStrategijuUListu(Strategija strategija){
+		for(int i=0; i<strategije.size(); i++){
+			if(strategija.getSumaUkupnihAtraktivnosti() > strategije.get(i).getSumaUkupnihAtraktivnosti()){
+				strategije.add(i, strategija);
+				return;
+			}
+		}
 		strategije.add(strategija);
 	}
 	public void dodajSnaguUListu(String naziv, double ponder){

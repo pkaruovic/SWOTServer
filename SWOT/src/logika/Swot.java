@@ -1,6 +1,8 @@
 package logika;
 
-public class Swot {
+import java.io.Serializable;
+
+public class Swot implements Serializable{
 	private String naziv;
 	private double ponder;
 
