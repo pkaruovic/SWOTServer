@@ -16,6 +16,7 @@ import logika.SwotStrat;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import java.awt.Dimension;
 import javax.swing.JButton;
@@ -90,6 +91,7 @@ public class GUIStrategija extends JFrame {
 		if (comboSnage == null) {
 			comboSnage = new JComboBox();
 			comboSnage.setPreferredSize(new Dimension(300, 40));
+			comboSnage.addItem("Snage");
 			for (int i = 0; i < Kontroler.getListaSnage().size(); i++) {
 				comboSnage.addItem(Kontroler.getListaSnage().get(i).getNaziv());
 			}
@@ -101,6 +103,7 @@ public class GUIStrategija extends JFrame {
 		if (comboAtraktivnostSnage == null) {
 			comboAtraktivnostSnage = new JComboBox();
 			comboAtraktivnostSnage.setPreferredSize(new Dimension(40, 22));
+			comboAtraktivnostSnage.addItem("");
 			comboAtraktivnostSnage.addItem("0");
 			comboAtraktivnostSnage.addItem("1");
 			comboAtraktivnostSnage.addItem("2");
@@ -114,6 +117,7 @@ public class GUIStrategija extends JFrame {
 		if (comboSlabosti == null) {
 			comboSlabosti = new JComboBox();
 			comboSlabosti.setPreferredSize(new Dimension(300, 40));
+			comboSlabosti.addItem("Slabosti");
 			for (int i = 0; i < Kontroler.getListaSlabosti().size(); i++) {
 				comboSlabosti.addItem(Kontroler.getListaSlabosti().get(i).getNaziv());
 			}
@@ -125,6 +129,7 @@ public class GUIStrategija extends JFrame {
 		if (comboAtraktivnostSlabosti == null) {
 			comboAtraktivnostSlabosti = new JComboBox();
 			comboAtraktivnostSlabosti.setPreferredSize(new Dimension(40, 22));
+			comboAtraktivnostSlabosti.addItem("");
 			comboAtraktivnostSlabosti.addItem("0");
 			comboAtraktivnostSlabosti.addItem("1");
 			comboAtraktivnostSlabosti.addItem("2");
@@ -138,6 +143,7 @@ public class GUIStrategija extends JFrame {
 		if (comboSanse == null) {
 			comboSanse = new JComboBox();
 			comboSanse.setPreferredSize(new Dimension(300, 40));
+			comboSanse.addItem("Sanse");
 			for (int i = 0; i < Kontroler.getListaSanse().size(); i++) {
 				comboSanse.addItem(Kontroler.getListaSanse().get(i).getNaziv());
 			}
@@ -149,6 +155,7 @@ public class GUIStrategija extends JFrame {
 		if (comboAtraktivnostSanse == null) {
 			comboAtraktivnostSanse = new JComboBox();
 			comboAtraktivnostSanse.setPreferredSize(new Dimension(40, 22));
+			comboAtraktivnostSanse.addItem("");
 			comboAtraktivnostSanse.addItem("0");
 			comboAtraktivnostSanse.addItem("1");
 			comboAtraktivnostSanse.addItem("2");
@@ -163,6 +170,7 @@ public class GUIStrategija extends JFrame {
 		if (comboPretnje == null) {
 			comboPretnje = new JComboBox();
 			comboPretnje.setPreferredSize(new Dimension(300, 40));
+			comboPretnje.addItem("Pretnje");
 			for (int i = 0; i < Kontroler.getListaPretnje().size(); i++) {
 				comboPretnje.addItem(Kontroler.getListaPretnje().get(i).getNaziv());
 			}
@@ -174,6 +182,7 @@ public class GUIStrategija extends JFrame {
 		if (comboAtraktivnostPretnje == null) {
 			comboAtraktivnostPretnje = new JComboBox();
 			comboAtraktivnostPretnje.setPreferredSize(new Dimension(40, 22));
+			comboAtraktivnostPretnje.addItem("");
 			comboAtraktivnostPretnje.addItem("0");
 			comboAtraktivnostPretnje.addItem("1");
 			comboAtraktivnostPretnje.addItem("2");
@@ -212,7 +221,26 @@ public class GUIStrategija extends JFrame {
 	private JButton getBtnDodajPretnju() {
 		if (btnDodajPretnju == null) {
 			btnDodajPretnju = new JButton("Dodaj pretnju");
-			btnDodajPretnju.setPreferredSize(new Dimension(98, 23));
+			btnDodajPretnju.setPreferredSize(new Dimension(115, 23));
+			btnDodajPretnju.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String naziv = (String) comboPretnje.getSelectedItem();
+					double ponder = Kontroler.getPonder(naziv);
+					String atraktivnostPretnje = (String) comboAtraktivnostPretnje.getSelectedItem();
+					if (naziv == null || naziv.equals("Pretnje")) {
+						JOptionPane.showMessageDialog(new GUIStrategija(), "Niste odabrali pretnju", "Greska",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else if (atraktivnostPretnje.isEmpty()) {
+						JOptionPane.showMessageDialog(new GUIStrategija(),
+								"Niste odabrali atraktivnost za odredjenu pretnju", "Greska",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						int atraktivnost = Integer.parseInt((String) comboAtraktivnostPretnje.getSelectedItem());
+						SwotStrat pomocna = new SwotStrat(naziv, ponder, atraktivnost);
+						novaStrategija.dodajPretnju(pomocna, atraktivnost);
+					}
+				}
+			});
 		}
 		return btnDodajPretnju;
 	}
@@ -222,24 +250,30 @@ public class GUIStrategija extends JFrame {
 			btnDodaj = new JButton("Dodaj");
 			btnDodaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					novaStrategija = new Strategija(textNazivStrategije.getText());
-					if (!Kontroler.getListaStrategija().contains(novaStrategija)) {
-						comboSnage.setVisible(true);
-						comboAtraktivnostSnage.setVisible(true);
-						comboSlabosti.setVisible(true);
-						comboAtraktivnostSlabosti.setVisible(true);
-						comboSanse.setVisible(true);
-						comboAtraktivnostSanse.setVisible(true);
-						comboPretnje.setVisible(true);
-						comboAtraktivnostPretnje.setVisible(true);
-						btnDodajPretnju.setVisible(true);
-						btnDodaj.setVisible(true);
-						btnDodajSnagu.setVisible(true);
-						btnDodajSlabost.setVisible(true);
-						btnDodajSansu.setVisible(true);
-						buttonSacuvaj.setVisible(true);
-					}else{
-						//new message dialog i ponovni unos naziva strategije
+					if (textNazivStrategije.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(new GUIStrategija(), "Morate uneti naziv strategije", "Greska",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						novaStrategija = Kontroler.kreirajStrategiju(textNazivStrategije.getText());
+						if (!Kontroler.getListaStrategija().contains(novaStrategija)) {
+							comboSnage.setVisible(true);
+							comboAtraktivnostSnage.setVisible(true);
+							comboSlabosti.setVisible(true);
+							comboAtraktivnostSlabosti.setVisible(true);
+							comboSanse.setVisible(true);
+							comboAtraktivnostSanse.setVisible(true);
+							comboPretnje.setVisible(true);
+							comboAtraktivnostPretnje.setVisible(true);
+							btnDodajPretnju.setVisible(true);
+							btnDodaj.setVisible(true);
+							btnDodajSnagu.setVisible(true);
+							btnDodajSlabost.setVisible(true);
+							btnDodajSansu.setVisible(true);
+							buttonSacuvaj.setVisible(true);
+						} else {
+							JOptionPane.showMessageDialog(new GUIStrategija(), "Ova strategija vec postoji", "Greska",
+									JOptionPane.INFORMATION_MESSAGE);
+						}
 					}
 				}
 			});
@@ -250,15 +284,26 @@ public class GUIStrategija extends JFrame {
 	private JButton getBtnDodajSnagu() {
 		if (btnDodajSnagu == null) {
 			btnDodajSnagu = new JButton("Dodaj snagu");
+			btnDodajSnagu.setPreferredSize(new Dimension(115, 23));
 			btnDodajSnagu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String naziv = (String) comboSnage.getSelectedItem();
 					double ponder = Kontroler.getPonder(naziv);
-					int atraktivnost = Integer.parseInt((String) comboAtraktivnostSnage.getSelectedItem());
-					SwotStrat pomocna = new SwotStrat(naziv, ponder, atraktivnost);
+					String atraktivnostSnage = (String) comboAtraktivnostSnage.getSelectedItem();
+					if (naziv == null || naziv.equals("Snage")) {
+						JOptionPane.showMessageDialog(new GUIStrategija(), "Niste odabrali snagu", "Greska",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else if (atraktivnostSnage.isEmpty()) {
+						JOptionPane.showMessageDialog(new GUIStrategija(),
+								"Niste odabrali atraktivnost za odredjenu snagu", "Greska",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						int atraktivnost = Integer.parseInt((String) comboAtraktivnostSnage.getSelectedItem());
+						SwotStrat pomocna = new SwotStrat(naziv, ponder, atraktivnost);
+						novaStrategija.dodajSnagu(pomocna, atraktivnost);
+					}
 				}
 			});
-			btnDodajSnagu.setPreferredSize(new Dimension(98, 23));
 		}
 		return btnDodajSnagu;
 	}
@@ -266,9 +311,24 @@ public class GUIStrategija extends JFrame {
 	private JButton getBtnDodajSlabost() {
 		if (btnDodajSlabost == null) {
 			btnDodajSlabost = new JButton("Dodaj slabost");
-			btnDodajSlabost.setPreferredSize(new Dimension(98, 23));
+			btnDodajSlabost.setPreferredSize(new Dimension(115, 23));
 			btnDodajSlabost.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					String naziv = (String) comboSlabosti.getSelectedItem();
+					double ponder = Kontroler.getPonder(naziv);
+					String atraktivnostSlabosti = (String) comboAtraktivnostSlabosti.getSelectedItem();
+					if (naziv == null || naziv.equals("Slabosti")) {
+						JOptionPane.showMessageDialog(new GUIStrategija(), "Niste odabrali slabost", "Greska",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else if (atraktivnostSlabosti.isEmpty()) {
+						JOptionPane.showMessageDialog(new GUIStrategija(),
+								"Niste odabrali atraktivnost za odredjenu slabost", "Greska",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						int atraktivnost = Integer.parseInt((String) comboAtraktivnostSlabosti.getSelectedItem());
+						SwotStrat pomocna = new SwotStrat(naziv, ponder, atraktivnost);
+						novaStrategija.dodajSlabost(pomocna, atraktivnost);
+					}
 				}
 			});
 		}
@@ -278,7 +338,26 @@ public class GUIStrategija extends JFrame {
 	private JButton getBtnDodajSansu() {
 		if (btnDodajSansu == null) {
 			btnDodajSansu = new JButton("Dodaj sansu");
-			btnDodajSansu.setPreferredSize(new Dimension(98, 23));
+			btnDodajSansu.setPreferredSize(new Dimension(115, 23));
+			btnDodajSansu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String naziv = (String) comboSanse.getSelectedItem();
+					double ponder = Kontroler.getPonder(naziv);
+					String atraktivnostSanse = (String) comboAtraktivnostSanse.getSelectedItem();
+					if (naziv == null || naziv.equals("Sanse")) {
+						JOptionPane.showMessageDialog(new GUIStrategija(), "Niste odabrali sansu", "Greska",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else if (atraktivnostSanse.isEmpty()) {
+						JOptionPane.showMessageDialog(new GUIStrategija(),
+								"Niste odabrali atraktivnost za odredjenu sansu", "Greska",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						int atraktivnost = Integer.parseInt((String) comboAtraktivnostSanse.getSelectedItem());
+						SwotStrat pomocna = new SwotStrat(naziv, ponder, atraktivnost);
+						novaStrategija.dodajSansu(pomocna, atraktivnost);
+					}
+				}
+			});
 		}
 		return btnDodajSansu;
 	}
@@ -297,6 +376,12 @@ public class GUIStrategija extends JFrame {
 			buttonSacuvaj = new JButton("Sacuvaj");
 			buttonSacuvaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					if (novaStrategija == null) {
+						JOptionPane.showMessageDialog(new GUIStrategija(), "Niste kreirali strategiju", "Greska",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						Kontroler.dodajStrategiju(novaStrategija);
+					}
 				}
 			});
 			buttonSacuvaj.setPreferredSize(new Dimension(100, 25));
