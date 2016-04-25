@@ -217,8 +217,7 @@ public class GlavniProzor extends JFrame {
 			btnSwot = new JButton("SWOT");
 			btnSwot.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					ProzorNoviSwot prozorNoviSwot = new ProzorNoviSwot();
-					prozorNoviSwot.setVisible(true);
+					Kontroler.napraviProzorNoviSwot();
 				}
 			});
 			btnSwot.setPreferredSize(new Dimension(130, 20));
@@ -265,5 +264,25 @@ public class GlavniProzor extends JFrame {
 			scrollPane_3.setViewportView(getPretnje());
 		}
 		return scrollPane_3;
+	}
+
+	public void srediTabeluSnage(ArrayList<Swot> listaSnage) {
+		ModelTabele mt = (ModelTabele)Snage.getModel();
+		mt.osveziTabelu(listaSnage);
+	}
+
+	public void srediTabeluSlabosti(ArrayList<Swot> listaSlabosti) {
+		ModelTabele mt = (ModelTabele)Slabosti.getModel();
+		mt.osveziTabelu(listaSlabosti);
+	}
+	
+	public void srediTabeluSanse(ArrayList<Swot> listaSanse) {
+		ModelTabele mt = (ModelTabele)Sanse.getModel();
+		mt.osveziTabelu(listaSanse);
+	}
+	
+	public void srediTabeluPretnje(ArrayList<Swot> listaPretnje) {
+		ModelTabele mt = (ModelTabele)Pretnje.getModel();
+		mt.osveziTabelu(listaPretnje);
 	}
 }

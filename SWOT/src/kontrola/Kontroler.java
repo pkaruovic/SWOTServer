@@ -5,15 +5,13 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import gui.GUIDodajSWOT;
 import gui.GlavniProzor;
+import gui.ProzorNoviSwot;
 import logika.Logika;
 import logika.Strategija;
 import logika.Swot;
 
 public class Kontroler {
-
-
 	
-
 	private static GlavniProzor frame;
 	private static Logika logika;
 
@@ -52,32 +50,33 @@ public class Kontroler {
 
 	public static void dodajSnagu(String naziv, double ponder) {
 		logika.dodajSnaguUListu(naziv, ponder);
-		popuniTabeluSnage(logika.getListaSnage());
+		popuniTabeluSnage();
 	}
 	public static void dodajSlabost(String naziv, double ponder) {
 		logika.dodajSlabostUListu(naziv, ponder);
-		popuniTabeluSlabosti(logika.getListaSlabosti());
+		popuniTabeluSlabosti();
 	}
 	public static void dodajSansu(String naziv, double ponder) {
 		logika.dodajSansuUListu(naziv, ponder);
-		popuniTabeluSanse(logika.getListaSanse());
+		popuniTabeluSanse();
 	}
 	public static void dodajPretnju(String naziv, double ponder) {
 		logika.dodajPretnjuUListu(naziv, ponder);
-		popuniTabeluPretnje(logika.getListaPretnje());
+		popuniTabeluPretnje();
 	}
 
-	public static void popuniTabeluSnage(ArrayList listaSnage) {
-
+	public static void popuniTabeluSnage() {
+		frame.srediTabeluSnage(logika.getListaSnage());
+		
 	}
-	public static void popuniTabeluSlabosti(ArrayList listaSlabosti) {
-
+	public static void popuniTabeluSlabosti() {
+		frame.srediTabeluSlabosti(logika.getListaSlabosti());
 	}
-	public static void popuniTabeluSanse(ArrayList listaSanse) {
-
+	public static void popuniTabeluSanse() {
+		frame.srediTabeluSanse(logika.getListaSanse());
 	}
-	public static void popuniTabeluPretnje(ArrayList listaPretnje) {
-
+	public static void popuniTabeluPretnje() {
+		frame.srediTabeluPretnje(logika.getListaPretnje());
 	}
 
 	public static ArrayList<Strategija> getListaStrategija(){
@@ -108,5 +107,10 @@ public class Kontroler {
 		// TODO Auto-generated method stub
 		return logika.vratiPonderSnagaNaziv(naziv);
 	}
-	
+
+	public static void napraviProzorNoviSwot() {
+		ProzorNoviSwot prozorNoviSwot = new ProzorNoviSwot();
+		prozorNoviSwot.setVisible(true);
+		prozorNoviSwot.setLocationRelativeTo(null);
+	}
 }

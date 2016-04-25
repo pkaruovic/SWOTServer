@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import kontrola.Kontroler;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Dimension;
 import javax.swing.JRadioButton;
@@ -39,7 +40,7 @@ public class ProzorNoviSwot extends JFrame {
 	 * Create the frame.
 	 */
 	public ProzorNoviSwot() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 302, 187);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -145,13 +146,20 @@ public class ProzorNoviSwot extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					if(rdbtnSnaga.isSelected()){
 						Kontroler.dodajSnagu(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
+						dispose();
 					}else if(rdbtnSlabost.isSelected()){
 						Kontroler.dodajSlabost(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
+						dispose();
 					}else if(rdbtnSansa.isSelected()){
 						Kontroler.dodajSansu(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
+						dispose();
 					}else if(rdbtnPretnja.isSelected()){
 						Kontroler.dodajPretnju(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
+						dispose();
+					}else{
+						JOptionPane.showMessageDialog(rootPane, "Niste izabrali tip SWOT-a", "Greska", JOptionPane.ERROR_MESSAGE);
 					}
+					
 				}
 			});
 		}
@@ -160,6 +168,11 @@ public class ProzorNoviSwot extends JFrame {
 	private JButton getBtnOtkazi() {
 		if (btnOtkazi == null) {
 			btnOtkazi = new JButton("Otkazi");
+			btnOtkazi.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+				}
+			});
 		}
 		return btnOtkazi;
 	}

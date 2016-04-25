@@ -51,4 +51,9 @@ public class ModelTabele extends AbstractTableModel{
 		}
 		return null;
 	}
+	
+	public void osveziTabelu(ArrayList<Swot> lista){
+		podaci = lista;
+		fireTableDataChanged();
+	}
 }
