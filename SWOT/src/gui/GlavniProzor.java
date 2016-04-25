@@ -167,6 +167,11 @@ public class GlavniProzor extends JFrame {
 	private JMenuItem getMntmNew() {
 		if (mntmNew == null) {
 			mntmNew = new JMenuItem("New");
+			mntmNew.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Kontroler.refresuj();
+				}
+			});
 			mntmNew.setIcon(new ImageIcon(GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/UpFolder.gif")));
 		}
 		return mntmNew;

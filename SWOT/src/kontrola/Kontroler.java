@@ -120,4 +120,19 @@ public class Kontroler {
 		prozorZaStrategije.setVisible(true);
 		prozorZaStrategije.setLocationRelativeTo(null);
 	}
+	
+	public static void refresuj(){
+		frame.dispose();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					logika = new Logika();
+					frame = new GlavniProzor();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 }
