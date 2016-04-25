@@ -145,6 +145,12 @@ public class ProzorNoviSwot extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					if(rdbtnSnaga.isSelected()){
 						Kontroler.dodajSnagu(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
+					}else if(rdbtnSlabost.isSelected()){
+						Kontroler.dodajSlabost(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
+					}else if(rdbtnSansa.isSelected()){
+						Kontroler.dodajSansu(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
+					}else if(rdbtnPretnja.isSelected()){
+						Kontroler.dodajPretnju(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
 					}
 				}
 			});
