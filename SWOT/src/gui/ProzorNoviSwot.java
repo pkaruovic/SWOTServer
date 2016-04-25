@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -144,22 +145,25 @@ public class ProzorNoviSwot extends JFrame {
 			btnSacuvaj = new JButton("Sacuvaj");
 			btnSacuvaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if(rdbtnSnaga.isSelected()){
-						Kontroler.dodajSnagu(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
-						dispose();
-					}else if(rdbtnSlabost.isSelected()){
-						Kontroler.dodajSlabost(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
-						dispose();
-					}else if(rdbtnSansa.isSelected()){
-						Kontroler.dodajSansu(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
-						dispose();
-					}else if(rdbtnPretnja.isSelected()){
-						Kontroler.dodajPretnju(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
-						dispose();
-					}else{
-						JOptionPane.showMessageDialog(rootPane, "Niste izabrali tip SWOT-a", "Greska", JOptionPane.ERROR_MESSAGE);
-					}
-					
+					try {
+						if(rdbtnSnaga.isSelected()){
+							Kontroler.dodajSnagu(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
+							dispose();
+						}else if(rdbtnSlabost.isSelected()){
+							Kontroler.dodajSlabost(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
+							dispose();
+						}else if(rdbtnSansa.isSelected()){
+							Kontroler.dodajSansu(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
+							dispose();
+						}else if(rdbtnPretnja.isSelected()){
+							Kontroler.dodajPretnju(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
+							dispose();
+						}else{
+							JOptionPane.showMessageDialog(rootPane, "Niste izabrali tip SWOT-a", "Greska", JOptionPane.ERROR_MESSAGE);
+						}
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(rootPane, "Nepravilno ste popunili formu.", "Greska", JOptionPane.ERROR_MESSAGE, null);
+					} 
 				}
 			});
 		}
