@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -19,13 +20,18 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+
 import java.awt.FlowLayout;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -54,7 +60,6 @@ public class GlavniProzor extends JFrame {
 	private JScrollPane scrollPane_3;
 	private JButton btnSwot;
 
-
 	public GlavniProzor() {
 
 		setTitle("SWOT");
@@ -80,6 +85,7 @@ public class GlavniProzor extends JFrame {
 		}
 		return menuBar;
 	}
+
 	private JMenu getMnFile() {
 		if (mnFile == null) {
 			mnFile = new JMenu("File");
@@ -90,26 +96,64 @@ public class GlavniProzor extends JFrame {
 		}
 		return mnFile;
 	}
+
 	private JMenu getMnHelp() {
 		if (mnHelp == null) {
 			mnHelp = new JMenu("Help");
 		}
 		return mnHelp;
 	}
+
 	private JMenuItem getMntmOpen() {
 		if (mntmOpen == null) {
 			mntmOpen = new JMenuItem("Open");
-			mntmOpen.setIcon(new ImageIcon(GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/TreeOpen.gif")));
+			mntmOpen.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					Kontroler.deserijalizuj();
+				}
+			});
+			
+			mntmOpen.setIcon(new ImageIcon(
+					GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/TreeOpen.gif")));
 		}
 		return mntmOpen;
 	}
+
 	private JMenuItem getMntmSave() {
 		if (mntmSave == null) {
 			mntmSave = new JMenuItem("Save");
-			mntmSave.setIcon(new ImageIcon(GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/FloppyDrive.gif")));
+			mntmSave.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JDialog saveDialog = new JDialog();
+					saveDialog.setBounds(100, 100, 250, 100);
+					JPanel panelD = new JPanel();
+					JTextField nazivFajla = new JTextField();
+					nazivFajla.setBounds(10, 10, 100, 25);
+					nazivFajla.setPreferredSize(new Dimension(100, 25));
+					JButton btnOk = new JButton("Ok");
+					panelD.setLayout(new FlowLayout());
+					// panelD.add(new JLabel("Naziv fajla:"));
+					panelD.add(nazivFajla);
+					panelD.add(btnOk);
+
+					btnOk.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							Kontroler.serijalizuj(nazivFajla.getText());
+						}
+					});
+					saveDialog.getContentPane().add(panelD);
+					saveDialog.setTitle("Naziv fajla");
+					saveDialog.setVisible(true);
+					saveDialog.setResizable(false);
+					saveDialog.setModal(true);
+				}
+			});
+			mntmSave.setIcon(new ImageIcon(
+					GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/FloppyDrive.gif")));
 		}
 		return mntmSave;
 	}
+
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
@@ -121,6 +165,7 @@ public class GlavniProzor extends JFrame {
 		}
 		return panel;
 	}
+
 	private JTable getSnage() {
 		if (Snage == null) {
 			Snage = new JTable();
@@ -132,6 +177,7 @@ public class GlavniProzor extends JFrame {
 		}
 		return Snage;
 	}
+
 	private JTable getSlabosti() {
 		if (Slabosti == null) {
 			Slabosti = new JTable();
@@ -143,6 +189,7 @@ public class GlavniProzor extends JFrame {
 		}
 		return Slabosti;
 	}
+
 	private JTable getSanse() {
 		if (Sanse == null) {
 			Sanse = new JTable();
@@ -154,6 +201,7 @@ public class GlavniProzor extends JFrame {
 		}
 		return Sanse;
 	}
+
 	private JTable getPretnje() {
 		if (Pretnje == null) {
 			Pretnje = new JTable();
@@ -164,13 +212,21 @@ public class GlavniProzor extends JFrame {
 		}
 		return Pretnje;
 	}
+
 	private JMenuItem getMntmNew() {
 		if (mntmNew == null) {
 			mntmNew = new JMenuItem("New");
-			mntmNew.setIcon(new ImageIcon(GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/UpFolder.gif")));
+			mntmNew.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					Kontroler.noviProjekat();
+				}
+			});
+			mntmNew.setIcon(new ImageIcon(
+					GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/UpFolder.gif")));
 		}
 		return mntmNew;
 	}
+
 	private JPanel getPanel_1() {
 		if (panel_1 == null) {
 			panel_1 = new JPanel();
@@ -179,10 +235,11 @@ public class GlavniProzor extends JFrame {
 			panel_1.add(getBtnSwot());
 			panel_1.add(getBtnKreirajStrategiju());
 			panel_1.add(getBtnUporediStrategije());
-			//panel_1.add(getBtnDodaj());
+			// panel_1.add(getBtnDodaj());
 		}
 		return panel_1;
 	}
+
 	private JButton getBtnUporediStrategije() {
 		if (btnUporediStrategije == null) {
 			btnUporediStrategije = new JButton(" Uporedi strategije");
@@ -195,6 +252,7 @@ public class GlavniProzor extends JFrame {
 		}
 		return btnUporediStrategije;
 	}
+
 	private JButton getBtnKreirajStrategiju() {
 		if (btnKreirajStrategiju == null) {
 			btnKreirajStrategiju = new JButton(" Kreiraj strategiju");
@@ -209,7 +267,6 @@ public class GlavniProzor extends JFrame {
 		return btnKreirajStrategiju;
 	}
 
-	
 	private JButton getBtnDodaj() {
 		if (btnDodaj == null) {
 			btnDodaj = new JButton("Dodaj");
@@ -217,6 +274,7 @@ public class GlavniProzor extends JFrame {
 		}
 		return btnDodaj;
 	}
+
 	private JButton getBtnSwot() {
 		if (btnSwot == null) {
 			btnSwot = new JButton("SWOT");
@@ -230,6 +288,7 @@ public class GlavniProzor extends JFrame {
 		return btnSwot;
 
 	}
+
 	private JMenuItem getMntmExit() {
 		if (mntmExit == null) {
 			mntmExit = new JMenuItem("Exit");
@@ -238,10 +297,12 @@ public class GlavniProzor extends JFrame {
 					Kontroler.ugasiAplikaciju();
 				}
 			});
-			mntmExit.setIcon(new ImageIcon(GlavniProzor.class.getResource("/javax/swing/plaf/metal/icons/ocean/close.gif")));
+			mntmExit.setIcon(
+					new ImageIcon(GlavniProzor.class.getResource("/javax/swing/plaf/metal/icons/ocean/close.gif")));
 		}
 		return mntmExit;
 	}
+
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
@@ -249,6 +310,7 @@ public class GlavniProzor extends JFrame {
 		}
 		return scrollPane;
 	}
+
 	private JScrollPane getScrollPane_1() {
 		if (scrollPane_1 == null) {
 			scrollPane_1 = new JScrollPane();
@@ -256,6 +318,7 @@ public class GlavniProzor extends JFrame {
 		}
 		return scrollPane_1;
 	}
+
 	private JScrollPane getScrollPane_2() {
 		if (scrollPane_2 == null) {
 			scrollPane_2 = new JScrollPane();
@@ -263,6 +326,7 @@ public class GlavniProzor extends JFrame {
 		}
 		return scrollPane_2;
 	}
+
 	private JScrollPane getScrollPane_3() {
 		if (scrollPane_3 == null) {
 			scrollPane_3 = new JScrollPane();
