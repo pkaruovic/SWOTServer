@@ -52,11 +52,17 @@ public class GlavniProzor extends JFrame {
 	private JScrollPane scrollPane_1;
 	private JScrollPane scrollPane_2;
 	private JScrollPane scrollPane_3;
+	private JButton btnSwot;
+
 
 	public GlavniProzor() {
+
 		setTitle("SWOT");
+
+		setPreferredSize(new Dimension(800, 600));
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 581, 369);
+		setBounds(100, 100, 900, 700);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -118,7 +124,7 @@ public class GlavniProzor extends JFrame {
 	private JTable getSnage() {
 		if (Snage == null) {
 			Snage = new JTable();
-			Snage.setModel(new ModelTabele(Logika.getListaSnage()));
+			Snage.setModel(new ModelTabele(Kontroler.getListaSnage()));
 			Snage.setShowGrid(true);
 			Snage.setShowVerticalLines(true);
 			Snage.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
@@ -129,7 +135,7 @@ public class GlavniProzor extends JFrame {
 	private JTable getSlabosti() {
 		if (Slabosti == null) {
 			Slabosti = new JTable();
-			Slabosti.setModel(new ModelTabele(Logika.getListaSlabosti()));
+			Slabosti.setModel(new ModelTabele(Kontroler.getListaSlabosti()));
 			Slabosti.setShowGrid(true);
 			Slabosti.setShowVerticalLines(true);
 			Slabosti.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
@@ -140,7 +146,7 @@ public class GlavniProzor extends JFrame {
 	private JTable getSanse() {
 		if (Sanse == null) {
 			Sanse = new JTable();
-			Sanse.setModel(new ModelTabele(Logika.getListaSanse()));
+			Sanse.setModel(new ModelTabele(Kontroler.getListaSanse()));
 			Sanse.setShowGrid(true);
 			Sanse.setShowVerticalLines(true);
 			Sanse.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
@@ -151,7 +157,7 @@ public class GlavniProzor extends JFrame {
 	private JTable getPretnje() {
 		if (Pretnje == null) {
 			Pretnje = new JTable();
-			Pretnje.setModel(new ModelTabele(Logika.getListaPretnje()));
+			Pretnje.setModel(new ModelTabele(Kontroler.getListaPretnje()));
 			Pretnje.setShowGrid(true);
 			Pretnje.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 			Pretnje.getColumnModel().getColumn(1).setPreferredWidth(10);
@@ -170,9 +176,10 @@ public class GlavniProzor extends JFrame {
 			panel_1 = new JPanel();
 			panel_1.setPreferredSize(new Dimension(140, 10));
 			panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+			panel_1.add(getBtnSwot());
 			panel_1.add(getBtnKreirajStrategiju());
 			panel_1.add(getBtnUporediStrategije());
-			panel_1.add(getBtnDodaj());
+			//panel_1.add(getBtnDodaj());
 		}
 		return panel_1;
 	}
@@ -186,10 +193,17 @@ public class GlavniProzor extends JFrame {
 	private JButton getBtnKreirajStrategiju() {
 		if (btnKreirajStrategiju == null) {
 			btnKreirajStrategiju = new JButton(" Kreiraj strategiju");
+			btnKreirajStrategiju.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIStrategija prozorNovaStrategija = new GUIStrategija();
+					prozorNovaStrategija.setVisible(true);
+				}
+			});
 			btnKreirajStrategiju.setPreferredSize(new Dimension(130, 23));
 		}
 		return btnKreirajStrategiju;
 	}
+
 	
 	private JButton getBtnDodaj() {
 		if (btnDodaj == null) {
@@ -197,6 +211,20 @@ public class GlavniProzor extends JFrame {
 			btnDodaj.setPreferredSize(new Dimension(130, 23));
 		}
 		return btnDodaj;
+	}
+	private JButton getBtnSwot() {
+		if (btnSwot == null) {
+			btnSwot = new JButton("SWOT");
+			btnSwot.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					ProzorNoviSwot prozorNoviSwot = new ProzorNoviSwot();
+					prozorNoviSwot.setVisible(true);
+				}
+			});
+			btnSwot.setPreferredSize(new Dimension(130, 20));
+		}
+		return btnSwot;
+
 	}
 	private JMenuItem getMntmExit() {
 		if (mntmExit == null) {

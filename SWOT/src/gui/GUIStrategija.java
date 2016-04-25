@@ -6,6 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import kontrola.Kontroler;
+import logika.Logika;
+import logika.Strategija;
+import logika.Swot;
+import logika.SwotStrat;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JList;
@@ -22,7 +29,7 @@ public class GUIStrategija extends JFrame {
 	private JComboBox comboSnage;
 	private JComboBox comboAtraktivnostSnage;
 	private JComboBox comboSlabosti;
-	private JComboBox comboAtrktivnostSlabosti;
+	private JComboBox comboAtraktivnostSlabosti;
 	private JComboBox comboSanse;
 	private JComboBox comboAtraktivnostSanse;
 	private JComboBox comboPretnje;
@@ -38,22 +45,7 @@ public class GUIStrategija extends JFrame {
 	private JPanel panel_2;
 	private JButton buttonSacuvaj;
 	private JButton buttonOtkazi;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUIStrategija frame = new GUIStrategija();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private Strategija novaStrategija;
 
 	/**
 	 * Create the frame.
@@ -77,7 +69,7 @@ public class GUIStrategija extends JFrame {
 			panel.add(getComboAtraktivnostSnage());
 			panel.add(getBtnDodajSnagu());
 			panel.add(getComboSlabosti());
-			panel.add(getComboAtrktivnostSlabosti());
+			panel.add(getComboAtraktivnostSlabosti());
 			panel.add(getBtnDodajSlabost());
 			panel.add(getComboSanse());
 			panel.add(getComboAtraktivnostSanse());
@@ -85,6 +77,7 @@ public class GUIStrategija extends JFrame {
 			panel.add(getComboPretnje());
 			panel.add(getComboAtraktivnostPretnje());
 			panel.add(getBtnDodajPretnju());
+
 		}
 		return panel;
 	}
@@ -93,6 +86,9 @@ public class GUIStrategija extends JFrame {
 		if (comboSnage == null) {
 			comboSnage = new JComboBox();
 			comboSnage.setPreferredSize(new Dimension(300, 40));
+			for (int i = 0; i < Kontroler.getListaSnage().size(); i++) {
+				comboSnage.addItem(Kontroler.getListaSnage().get(i).getNaziv());
+			}
 		}
 		return comboSnage;
 	}
@@ -114,27 +110,33 @@ public class GUIStrategija extends JFrame {
 		if (comboSlabosti == null) {
 			comboSlabosti = new JComboBox();
 			comboSlabosti.setPreferredSize(new Dimension(300, 40));
+			for (int i = 0; i < Kontroler.getListaSlabosti().size(); i++) {
+				comboSlabosti.addItem(Kontroler.getListaSlabosti().get(i).getNaziv());
+			}
 		}
 		return comboSlabosti;
 	}
 
-	private JComboBox getComboAtrktivnostSlabosti() {
-		if (comboAtrktivnostSlabosti == null) {
-			comboAtrktivnostSlabosti = new JComboBox();
-			comboAtrktivnostSlabosti.setPreferredSize(new Dimension(40, 22));
-			comboAtrktivnostSlabosti.addItem("0");
-			comboAtrktivnostSlabosti.addItem("1");
-			comboAtrktivnostSlabosti.addItem("2");
-			comboAtrktivnostSlabosti.addItem("3");
-			comboAtrktivnostSlabosti.addItem("4");
+	private JComboBox getComboAtraktivnostSlabosti() {
+		if (comboAtraktivnostSlabosti == null) {
+			comboAtraktivnostSlabosti = new JComboBox();
+			comboAtraktivnostSlabosti.setPreferredSize(new Dimension(40, 22));
+			comboAtraktivnostSlabosti.addItem("0");
+			comboAtraktivnostSlabosti.addItem("1");
+			comboAtraktivnostSlabosti.addItem("2");
+			comboAtraktivnostSlabosti.addItem("3");
+			comboAtraktivnostSlabosti.addItem("4");
 		}
-		return comboAtrktivnostSlabosti;
+		return comboAtraktivnostSlabosti;
 	}
 
 	private JComboBox getComboSanse() {
 		if (comboSanse == null) {
 			comboSanse = new JComboBox();
 			comboSanse.setPreferredSize(new Dimension(300, 40));
+			for (int i = 0; i < Kontroler.getListaSanse().size(); i++) {
+				comboSanse.addItem(Kontroler.getListaSanse().get(i).getNaziv());
+			}
 		}
 		return comboSanse;
 	}
@@ -157,6 +159,9 @@ public class GUIStrategija extends JFrame {
 		if (comboPretnje == null) {
 			comboPretnje = new JComboBox();
 			comboPretnje.setPreferredSize(new Dimension(300, 40));
+			for (int i = 0; i < Kontroler.getListaPretnje().size(); i++) {
+				comboPretnje.addItem(Kontroler.getListaPretnje().get(i).getNaziv());
+			}
 		}
 		return comboPretnje;
 	}
@@ -211,6 +216,29 @@ public class GUIStrategija extends JFrame {
 	private JButton getBtnDodaj() {
 		if (btnDodaj == null) {
 			btnDodaj = new JButton("Dodaj");
+			btnDodaj.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					novaStrategija = new Strategija(textNazivStrategije.getText());
+					if (!Kontroler.getListaStrategija().contains(novaStrategija)) {
+						comboSnage.setVisible(true);
+						comboAtraktivnostSnage.setVisible(true);
+						comboSlabosti.setVisible(true);
+						comboAtraktivnostSlabosti.setVisible(true);
+						comboSanse.setVisible(true);
+						comboAtraktivnostSanse.setVisible(true);
+						comboPretnje.setVisible(true);
+						comboAtraktivnostPretnje.setVisible(true);
+						btnDodajPretnju.setVisible(true);
+						btnDodaj.setVisible(true);
+						btnDodajSnagu.setVisible(true);
+						btnDodajSlabost.setVisible(true);
+						btnDodajSansu.setVisible(true);
+						buttonSacuvaj.setVisible(true);
+					}else{
+						//new message dialog i ponovni unos naziva strategije
+					}
+				}
+			});
 		}
 		return btnDodaj;
 	}
@@ -218,6 +246,14 @@ public class GUIStrategija extends JFrame {
 	private JButton getBtnDodajSnagu() {
 		if (btnDodajSnagu == null) {
 			btnDodajSnagu = new JButton("Dodaj snagu");
+			btnDodajSnagu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String naziv = (String) comboSnage.getSelectedItem();
+					double ponder = Kontroler.getPonder(naziv);
+					int atraktivnost = Integer.parseInt((String) comboAtraktivnostSnage.getSelectedItem());
+					SwotStrat pomocna = new SwotStrat(naziv, ponder, atraktivnost);
+				}
+			});
 			btnDodajSnagu.setPreferredSize(new Dimension(98, 23));
 		}
 		return btnDodajSnagu;

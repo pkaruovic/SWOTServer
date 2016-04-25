@@ -86,4 +86,15 @@ public class Strategija {
 			sumaUkupnihAtraktivnosti+= swotStrat.getUkupnaAtraktivnost();
 		}
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj != null){
+			if(obj instanceof Strategija){
+				Strategija pom = (Strategija)obj;
+				return naziv.equals(pom.getNaziv());
+			}
+		}
+		return false;
+	}
 }
