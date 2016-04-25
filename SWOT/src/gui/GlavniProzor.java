@@ -186,6 +186,11 @@ public class GlavniProzor extends JFrame {
 	private JButton getBtnUporediStrategije() {
 		if (btnUporediStrategije == null) {
 			btnUporediStrategije = new JButton(" Uporedi strategije");
+			btnUporediStrategije.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Kontroler.napraviProzorUporediStrategije();
+				}
+			});
 			btnUporediStrategije.setPreferredSize(new Dimension(130, 23));
 		}
 		return btnUporediStrategije;

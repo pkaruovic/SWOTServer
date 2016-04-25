@@ -21,6 +21,7 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dialog.ModalExclusionType;
 
 public class GUIStrategija extends JFrame {
 
@@ -51,7 +52,10 @@ public class GUIStrategija extends JFrame {
 	 * Create the frame.
 	 */
 	public GUIStrategija() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
+		setTitle("Kreiraj strategiju");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 491, 309);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -291,6 +295,10 @@ public class GUIStrategija extends JFrame {
 	private JButton getButtonSacuvaj() {
 		if (buttonSacuvaj == null) {
 			buttonSacuvaj = new JButton("Sacuvaj");
+			buttonSacuvaj.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
 			buttonSacuvaj.setPreferredSize(new Dimension(100, 25));
 		}
 		return buttonSacuvaj;
@@ -299,6 +307,11 @@ public class GUIStrategija extends JFrame {
 	private JButton getButtonOtkazi() {
 		if (buttonOtkazi == null) {
 			buttonOtkazi = new JButton("Otkazi");
+			buttonOtkazi.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+				}
+			});
 		}
 		return buttonOtkazi;
 	}

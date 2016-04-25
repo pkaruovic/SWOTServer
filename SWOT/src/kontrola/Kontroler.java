@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import gui.GUIDodajSWOT;
+import gui.GUIUporediStrategije;
 import gui.GlavniProzor;
 import gui.ProzorNoviSwot;
 import logika.Logika;
@@ -112,5 +113,11 @@ public class Kontroler {
 		ProzorNoviSwot prozorNoviSwot = new ProzorNoviSwot();
 		prozorNoviSwot.setVisible(true);
 		prozorNoviSwot.setLocationRelativeTo(null);
+	}
+	
+	public static void napraviProzorUporediStrategije(){
+		GUIUporediStrategije prozorZaStrategije = new GUIUporediStrategije();
+		prozorZaStrategije.setVisible(true);
+		prozorZaStrategije.setLocationRelativeTo(null);
 	}
 }
