@@ -252,6 +252,8 @@ public class GUIStrategija extends JFrame {
 						int atraktivnost = Integer.parseInt((String) comboAtraktivnostPretnje.getSelectedItem());
 						SwotStrat pomocna = new SwotStrat(naziv, ponder, atraktivnost);
 						novaStrategija.dodajPretnju(pomocna, atraktivnost);
+						comboPretnje.setSelectedItem("Pretnje");
+						comboAtraktivnostPretnje.setSelectedItem("");
 					}
 				}
 			});
@@ -315,6 +317,8 @@ public class GUIStrategija extends JFrame {
 						int atraktivnost = Integer.parseInt((String) comboAtraktivnostSnage.getSelectedItem());
 						SwotStrat pomocna = new SwotStrat(naziv, ponder, atraktivnost);
 						novaStrategija.dodajSnagu(pomocna, atraktivnost);
+						comboSnage.setSelectedItem("Snage");
+						comboAtraktivnostSnage.setSelectedItem("");
 					}
 				}
 			});
@@ -342,6 +346,8 @@ public class GUIStrategija extends JFrame {
 						int atraktivnost = Integer.parseInt((String) comboAtraktivnostSlabosti.getSelectedItem());
 						SwotStrat pomocna = new SwotStrat(naziv, ponder, atraktivnost);
 						novaStrategija.dodajSlabost(pomocna, atraktivnost);
+						comboSlabosti.setSelectedItem("Slabosti");
+						comboAtraktivnostSlabosti.setSelectedItem("");
 					}
 				}
 			});
@@ -369,6 +375,8 @@ public class GUIStrategija extends JFrame {
 						int atraktivnost = Integer.parseInt((String) comboAtraktivnostSanse.getSelectedItem());
 						SwotStrat pomocna = new SwotStrat(naziv, ponder, atraktivnost);
 						novaStrategija.dodajSansu(pomocna, atraktivnost);
+						comboSanse.setSelectedItem("Sanse");
+						comboAtraktivnostSanse.setSelectedItem("");
 					}
 				}
 			});
@@ -396,6 +404,7 @@ public class GUIStrategija extends JFrame {
 					} else {
 						novaStrategija.izracunajSumuUkupnihAtraktivnosti();
 						Kontroler.dodajStrategiju(novaStrategija);
+						textNazivStrategije.setText("");
 					}
 				}
 			});
