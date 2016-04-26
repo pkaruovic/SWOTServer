@@ -94,6 +94,7 @@ public class Kontroler {
 			try(ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(nazivFajla)))){
 				logika = (Logika) in.readObject();//mora posebno?
 				//popuni sve tabele itd
+				popuniTabeluSnage();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
