@@ -174,11 +174,19 @@ public class Kontroler {
 		return logika.getListaPretnje();
 	}
 
-	public static double getPonder(String naziv) {
+	public static double getPonderSnaga(String naziv) {
 		// TODO Auto-generated method stub
 		return logika.vratiPonderSnagaNaziv(naziv);
 	}
-
+	public static double getPonderSlabost(String naziv){
+		return logika.vratiPonderSlabostNaziv(naziv);
+	}
+	public static double getPonderSansa(String naziv){
+		return logika.vratiPonderSansaNaziv(naziv);
+	}
+	public static double getPonderPretnja(String naziv){
+		return logika.vratiPonderPretnjaNaziv(naziv);
+	}
 
 	public static void napraviProzorNoviSwot() {
 		ProzorNoviSwot prozorNoviSwot = new ProzorNoviSwot();

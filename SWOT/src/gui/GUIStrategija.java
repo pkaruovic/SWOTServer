@@ -239,7 +239,7 @@ public class GUIStrategija extends JFrame {
 			btnDodajPretnju.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String naziv = (String) comboPretnje.getSelectedItem();
-					double ponder = Kontroler.getPonder(naziv);
+					double ponder = Kontroler.getPonderPretnja(naziv);
 					String atraktivnostPretnje = (String) comboAtraktivnostPretnje.getSelectedItem();
 					if (naziv == null || naziv.equals("Pretnje")) {
 						JOptionPane.showMessageDialog(new GUIStrategija(), "Niste odabrali pretnju", "Greska",
@@ -302,7 +302,7 @@ public class GUIStrategija extends JFrame {
 			btnDodajSnagu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String naziv = (String) comboSnage.getSelectedItem();
-					double ponder = Kontroler.getPonder(naziv);
+					double ponder = Kontroler.getPonderSnaga(naziv);
 					String atraktivnostSnage = (String) comboAtraktivnostSnage.getSelectedItem();
 					if (naziv == null || naziv.equals("Snage")) {
 						JOptionPane.showMessageDialog(new GUIStrategija(), "Niste odabrali snagu", "Greska",
@@ -329,7 +329,7 @@ public class GUIStrategija extends JFrame {
 			btnDodajSlabost.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					String naziv = (String) comboSlabosti.getSelectedItem();
-					double ponder = Kontroler.getPonder(naziv);
+					double ponder = Kontroler.getPonderSlabost(naziv);
 					String atraktivnostSlabosti = (String) comboAtraktivnostSlabosti.getSelectedItem();
 					if (naziv == null || naziv.equals("Slabosti")) {
 						JOptionPane.showMessageDialog(new GUIStrategija(), "Niste odabrali slabost", "Greska",
@@ -356,7 +356,7 @@ public class GUIStrategija extends JFrame {
 			btnDodajSansu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String naziv = (String) comboSanse.getSelectedItem();
-					double ponder = Kontroler.getPonder(naziv);
+					double ponder = Kontroler.getPonderSansa(naziv);
 					String atraktivnostSanse = (String) comboAtraktivnostSanse.getSelectedItem();
 					if (naziv == null || naziv.equals("Sanse")) {
 						JOptionPane.showMessageDialog(new GUIStrategija(), "Niste odabrali sansu", "Greska",
