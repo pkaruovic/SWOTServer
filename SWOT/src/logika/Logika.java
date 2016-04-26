@@ -60,6 +60,12 @@ public class Logika implements Serializable{
 	}
 	
 	public void dodajStrategijuUListu(Strategija strategija){
+		for(int i=0; i<strategije.size(); i++){
+			if(strategija.getSumaUkupnihAtraktivnosti() > strategije.get(i).getSumaUkupnihAtraktivnosti()){
+				strategije.add(i, strategija);
+				return;
+			}
+		}
 		strategije.add(strategija);
 	}
 	public void dodajSnaguUListu(String naziv, double ponder){

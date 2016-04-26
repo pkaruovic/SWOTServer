@@ -65,7 +65,7 @@ public class GUIUporediStrategije extends JFrame {
 	private JTable getTable() {
 		if (table == null) {
 			table = new JTable();
-			table.setModel(new ModelStrategije(null));
+			table.setModel(new ModelStrategije(Kontroler.getListaStrategija()));
 			table.setShowVerticalLines(true);
 			table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 			table.getColumnModel().getColumn(1).setPreferredWidth(10);

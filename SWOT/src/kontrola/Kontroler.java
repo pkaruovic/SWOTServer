@@ -185,25 +185,55 @@ public class Kontroler {
 		prozorNoviSwot.setVisible(true);
 		prozorNoviSwot.setLocationRelativeTo(null);
 	}
-	public static void noviProjekat() {
-		isprazniTabele();
-		isprazniListe();
-	}
-
-	private static void isprazniListe() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private static void isprazniTabele() {
-		// TODO Auto-generated method stub
-		
-
-	}
+//	public static void noviProjekat() {
+//		isprazniTabele();
+//		isprazniListe();
+//	}
+//
+//	private static void isprazniListe() {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	private static void isprazniTabele() {
+//		// TODO Auto-generated method stub
+//		
+//
+//	}
 	
 	public static void napraviProzorUporediStrategije(){
 		GUIUporediStrategije prozorZaStrategije = new GUIUporediStrategije();
 		prozorZaStrategije.setVisible(true);
 		prozorZaStrategije.setLocationRelativeTo(null);
+	}
+	
+//	public static void sortirajStrategijePoAtraktivnosti(){
+//		ArrayList<Strategija> sortirana = logika.getStrategije();
+//		
+//		for(int i=0; i<sortirana.size(); i++){
+//			for(int j=i+1; j<sortirana.size(); j++){
+//				if(sortirana.get(i).getSumaUkupnihAtraktivnosti() < sortirana.get(j).getSumaUkupnihAtraktivnosti()){
+//					Strategija s = sortirana.get(i);
+//					sortirana.set(i, sortirana.get(j));
+//					sortirana.set(j, s);
+//				}
+//			}
+//		}
+//		logika.setStrategije(sortirana);
+//	}
+	
+	public static void refresuj(){
+		frame.dispose();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					logika = new Logika();
+					frame = new GlavniProzor();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }

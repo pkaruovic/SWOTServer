@@ -217,13 +217,22 @@ public class GlavniProzor extends JFrame {
 		if (mntmNew == null) {
 			mntmNew = new JMenuItem("New");
 			mntmNew.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					Kontroler.noviProjekat();
+
+				public void actionPerformed(ActionEvent e) {
+					Kontroler.refresuj();
 				}
 			});
-			mntmNew.setIcon(new ImageIcon(
-					GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/UpFolder.gif")));
+			mntmNew.setIcon(new ImageIcon(GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/UpFolder.gif")));
 		}
+//=======
+//				public void actionPerformed(ActionEvent arg0) {
+//					Kontroler.noviProjekat();
+//				}
+//			});
+//			mntmNew.setIcon(new ImageIcon(
+//					GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/UpFolder.gif")));
+//>>>>>>> branch 'master' of https://github.com/JGRASS/project4-2016.git
+//		}
 		return mntmNew;
 	}
 
