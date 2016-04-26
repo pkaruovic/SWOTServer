@@ -125,6 +125,7 @@ public class GlavniProzor extends JFrame {
 			mntmSave.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					JDialog saveDialog = new JDialog();
+					saveDialog.setVisible(true);
 					saveDialog.setBounds(100, 100, 250, 100);
 					JPanel panelD = new JPanel();
 					JTextField nazivFajla = new JTextField();
@@ -135,17 +136,21 @@ public class GlavniProzor extends JFrame {
 					// panelD.add(new JLabel("Naziv fajla:"));
 					panelD.add(nazivFajla);
 					panelD.add(btnOk);
-
+					
 					btnOk.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							Kontroler.serijalizuj(nazivFajla.getText());
+							saveDialog.dispose();
+						//	saveDialog.setEnabled(false);
+							//saveDialog.setVisible(false);
+							
 						}
 					});
 					saveDialog.getContentPane().add(panelD);
 					saveDialog.setTitle("Naziv fajla");
 					saveDialog.setVisible(true);
 					saveDialog.setResizable(false);
-					saveDialog.setModal(true);
+				//	saveDialog.setModal(true);
 				}
 			});
 			mntmSave.setIcon(new ImageIcon(
