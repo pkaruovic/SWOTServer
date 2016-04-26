@@ -56,7 +56,7 @@ public class Strategija implements Serializable{
 		return pretnje;
 	}
 
-
+//ukloni visak, moze samo swotstrat da se prosledjuje
 	public void dodajSnagu(SwotStrat snaga, int atraktivnost){
 		SwotStrat s = new SwotStrat(snaga.getNaziv(), snaga.getPonder(), atraktivnost);
 		snage.add(s);

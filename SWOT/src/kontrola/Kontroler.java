@@ -72,12 +72,6 @@ public class Kontroler {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			// try {
-			// BufferedReader br = new BufferedReader(new FileReader(fajl));
-			// } catch (FileNotFoundException e) {
-			// // TODO Auto-generated catch block
-			// e.printStackTrace();
-			// }
 
 			JOptionPane.showMessageDialog(frame.getContentPane(), "Uspesno ste sacuvali fajl!", "Poruka",
 					JOptionPane.PLAIN_MESSAGE);
@@ -95,6 +89,9 @@ public class Kontroler {
 				logika = (Logika) in.readObject();//mora posebno?
 				//popuni sve tabele itd
 				popuniTabeluSnage();
+				popuniTabeluPretnje();
+				popuniTabeluSanse();
+				popuniTabeluSlabosti();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
