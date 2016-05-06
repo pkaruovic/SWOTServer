@@ -317,8 +317,6 @@ public class GUIStrategija extends JFrame {
 						int atraktivnost = Integer.parseInt((String) comboAtraktivnostSnage.getSelectedItem());
 						SwotStrat pomocna = new SwotStrat(naziv, ponder, atraktivnost);
 						novaStrategija.dodajSnagu(pomocna, atraktivnost);
-						System.out.println(atraktivnost);
-						System.out.println(novaStrategija.getSnage().get(0).getUkupnaAtraktivnost());
 						comboSnage.setSelectedItem("Snage");
 						comboAtraktivnostSnage.setSelectedItem("");
 					}
