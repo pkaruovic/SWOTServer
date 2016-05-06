@@ -83,14 +83,18 @@ public class Logika implements Serializable{
 	public void dodajPretnjuUListu(String naziv, double ponder){
 		listaPretnje.add(new Swot(naziv, ponder));
 	}
-	
+
 	public double vratiPonderSnagaNaziv(String naziv){
 		//dodaj kontrolu u gui-u da uopste ne moze da pozove ako je naziv null ili prazan
-		if(naziv == null || naziv.isEmpty())
-		for (Swot swot : listaSnage) {
-			if(swot.getNaziv().equals(naziv))
-				return swot.getPonder();
-		}
+//		if(naziv == null || naziv.isEmpty())
+//		for (Swot swot : listaSnage) {
+//			if(swot.getNaziv().equals(naziv))
+//				return swot.getPonder();
+//		}
+		for(int i=0; i<listaSnage.size(); i++){
+			if(listaSnage.get(i).getNaziv().equals(naziv))
+				return listaSnage.get(i).getPonder();
+			}
 		return 0;//nece doci do ovoga kada se uvede kontrola
 	}
 	

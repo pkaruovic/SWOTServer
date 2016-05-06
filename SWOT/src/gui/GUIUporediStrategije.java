@@ -45,7 +45,7 @@ public class GUIUporediStrategije extends JFrame {
 	 * Create the frame.
 	 */
 	public GUIUporediStrategije() {
-		setTitle("Uporedi strategije\r\n");
+		setTitle("Strategije");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

@@ -10,6 +10,7 @@ public class SwotStrat extends Swot implements Serializable{
 		super(naziv, ponder);
 		this.atraktivnost = atraktivnost;
 		ukupnaAtraktivnost = super.getPonder() * atraktivnost;
+		System.out.println(ponder);
 	}
 
 	public int getAtraktivnost() {

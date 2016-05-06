@@ -148,16 +148,12 @@ public class ProzorNoviSwot extends JFrame {
 					try {
 						if(rdbtnSnaga.isSelected()){
 							Kontroler.dodajSnagu(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
-							dispose();
 						}else if(rdbtnSlabost.isSelected()){
 							Kontroler.dodajSlabost(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
-							dispose();
 						}else if(rdbtnSansa.isSelected()){
 							Kontroler.dodajSansu(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
-							dispose();
 						}else if(rdbtnPretnja.isSelected()){
 							Kontroler.dodajPretnju(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
-							dispose();
 						}else{
 							JOptionPane.showMessageDialog(rootPane, "Niste izabrali tip SWOT-a", "Greska", JOptionPane.ERROR_MESSAGE);
 						}
