@@ -24,6 +24,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dialog.ModalExclusionType;
 
+/**
+ * Klasa GUIStrategija pomocu koje se kreira strategija za koju se biraju snage,
+ * slabosti, sanse i pretnje i njihove atraktivnosti
+ * 
+ * @author Miljan Jovic
+ */
+
 public class GUIStrategija extends JFrame {
 
 	private JPanel contentPane;
@@ -47,6 +54,7 @@ public class GUIStrategija extends JFrame {
 	private JPanel panel_2;
 	private JButton buttonSacuvaj;
 	private JButton buttonOtkazi;
+
 	private Strategija novaStrategija;
 
 	/**
@@ -98,6 +106,12 @@ public class GUIStrategija extends JFrame {
 		return panel;
 	}
 
+	/**
+	 * Kreira objekat comboSnage koji se popunjava i vraca.
+	 * 
+	 * @return JComboBox
+	 * 
+	 */
 	private JComboBox getComboSnage() {
 		if (comboSnage == null) {
 			comboSnage = new JComboBox();
@@ -113,6 +127,12 @@ public class GUIStrategija extends JFrame {
 		return comboSnage;
 	}
 
+	/**
+	 * Kreira objekat comboAtraktivnostSnage koji se popunjava i vraca.
+	 * 
+	 * @return JComboBox
+	 * 
+	 */
 	private JComboBox getComboAtraktivnostSnage() {
 		if (comboAtraktivnostSnage == null) {
 			comboAtraktivnostSnage = new JComboBox();
@@ -127,6 +147,12 @@ public class GUIStrategija extends JFrame {
 		return comboAtraktivnostSnage;
 	}
 
+	/**
+	 * Kreira objekat comboSlabosti koji se popunjava i vraca.
+	 * 
+	 * @return JComboBox
+	 * 
+	 */
 	private JComboBox getComboSlabosti() {
 		if (comboSlabosti == null) {
 			comboSlabosti = new JComboBox();
@@ -139,6 +165,12 @@ public class GUIStrategija extends JFrame {
 		return comboSlabosti;
 	}
 
+	/**
+	 * Kreira objekat comboAtraktivnostSlabosti koji se popunjava i vraca.
+	 * 
+	 * @return JComboBox
+	 * 
+	 */
 	private JComboBox getComboAtraktivnostSlabosti() {
 		if (comboAtraktivnostSlabosti == null) {
 			comboAtraktivnostSlabosti = new JComboBox();
@@ -153,6 +185,13 @@ public class GUIStrategija extends JFrame {
 		return comboAtraktivnostSlabosti;
 	}
 
+	/**
+	 * Kreira objekat comboSanse koji se popunjava i vraca.
+	 * 
+	 * @return JComboBox
+	 * 
+	 */
+
 	private JComboBox getComboSanse() {
 		if (comboSanse == null) {
 			comboSanse = new JComboBox();
@@ -165,6 +204,12 @@ public class GUIStrategija extends JFrame {
 		return comboSanse;
 	}
 
+	/**
+	 * Kreira objekat comboAtraktivnostSanse koji se popunjava i vraca.
+	 * 
+	 * @return JComboBox
+	 * 
+	 */
 	private JComboBox getComboAtraktivnostSanse() {
 		if (comboAtraktivnostSanse == null) {
 			comboAtraktivnostSanse = new JComboBox();
@@ -180,6 +225,12 @@ public class GUIStrategija extends JFrame {
 		return comboAtraktivnostSanse;
 	}
 
+	/**
+	 * Kreira objekat comboPretnje koji se popunjava i vraca.
+	 * 
+	 * @return JComboBox
+	 * 
+	 */
 	private JComboBox getComboPretnje() {
 		if (comboPretnje == null) {
 			comboPretnje = new JComboBox();
@@ -192,6 +243,12 @@ public class GUIStrategija extends JFrame {
 		return comboPretnje;
 	}
 
+	/**
+	 * Kreira objekat comboAtraktivnostPretnje koji se popunjava i vraca.
+	 * 
+	 * @return JComboBox
+	 * 
+	 */
 	private JComboBox getComboAtraktivnostPretnje() {
 		if (comboAtraktivnostPretnje == null) {
 			comboAtraktivnostPretnje = new JComboBox();
@@ -232,34 +289,13 @@ public class GUIStrategija extends JFrame {
 		return textNazivStrategije;
 	}
 
-	private JButton getBtnDodajPretnju() {
-		if (btnDodajPretnju == null) {
-			btnDodajPretnju = new JButton("Dodaj pretnju");
-			btnDodajPretnju.setPreferredSize(new Dimension(115, 23));
-			btnDodajPretnju.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					String naziv = (String) comboPretnje.getSelectedItem();
-					double ponder = Kontroler.getPonderPretnja(naziv);
-					String atraktivnostPretnje = (String) comboAtraktivnostPretnje.getSelectedItem();
-					if (naziv == null || naziv.equals("Pretnje")) {
-						JOptionPane.showMessageDialog(new GUIStrategija(), "Niste odabrali pretnju", "Greska",
-								JOptionPane.INFORMATION_MESSAGE);
-					} else if (atraktivnostPretnje.isEmpty()) {
-						JOptionPane.showMessageDialog(new GUIStrategija(),
-								"Niste odabrali atraktivnost za odredjenu pretnju", "Greska",
-								JOptionPane.INFORMATION_MESSAGE);
-					} else {
-						int atraktivnost = Integer.parseInt((String) comboAtraktivnostPretnje.getSelectedItem());
-						SwotStrat pomocna = new SwotStrat(naziv, ponder, atraktivnost);
-						novaStrategija.dodajPretnju(pomocna, atraktivnost);
-						comboPretnje.setSelectedItem("Pretnje");
-						comboAtraktivnostPretnje.setSelectedItem("");
-					}
-				}
-			});
-		}
-		return btnDodajPretnju;
-	}
+	/**
+	 * Kreira i vraca dugme btnDodaj koje kada se klikne kreira strategiju sa
+	 * nazivom koji je unet
+	 * 
+	 * @return JButton
+	 * 
+	 */
 
 	private JButton getBtnDodaj() {
 		if (btnDodaj == null) {
@@ -297,6 +333,13 @@ public class GUIStrategija extends JFrame {
 		return btnDodaj;
 	}
 
+	/**
+	 * Kreira i vraca dugme btnDodajSnagu koje kada se klikne odabranu snagu i
+	 * atraktivnost ubacuje u vec kreiranu strategiju
+	 * 
+	 * @return JButton
+	 * 
+	 */
 	private JButton getBtnDodajSnagu() {
 		if (btnDodajSnagu == null) {
 			btnDodajSnagu = new JButton("Dodaj snagu");
@@ -326,6 +369,13 @@ public class GUIStrategija extends JFrame {
 		return btnDodajSnagu;
 	}
 
+	/**
+	 * Kreira i vraca dugme btnDodajSlabost koje kada se klikne odabranu slabost
+	 * i atraktivnost ubacuje u vec kreiranu strategiju
+	 * 
+	 * @return JButton
+	 * 
+	 */
 	private JButton getBtnDodajSlabost() {
 		if (btnDodajSlabost == null) {
 			btnDodajSlabost = new JButton("Dodaj slabost");
@@ -355,6 +405,13 @@ public class GUIStrategija extends JFrame {
 		return btnDodajSlabost;
 	}
 
+	/**
+	 * Kreira i vraca dugme btnDodajSansu koje kada se klikne odabranu sansu i
+	 * atraktivnost ubacuje u vec kreiranu strategiju
+	 * 
+	 * @return JButton
+	 * 
+	 */
 	private JButton getBtnDodajSansu() {
 		if (btnDodajSansu == null) {
 			btnDodajSansu = new JButton("Dodaj sansu");
@@ -384,6 +441,42 @@ public class GUIStrategija extends JFrame {
 		return btnDodajSansu;
 	}
 
+	/**
+	 * Kreira i vraca dugme btnDodajPretnju koje kada se klikne odabranu pretnju
+	 * i atraktivnost ubacuje u vec kreiranu strategiju
+	 * 
+	 * @return JButton
+	 * 
+	 */
+	private JButton getBtnDodajPretnju() {
+		if (btnDodajPretnju == null) {
+			btnDodajPretnju = new JButton("Dodaj pretnju");
+			btnDodajPretnju.setPreferredSize(new Dimension(115, 23));
+			btnDodajPretnju.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String naziv = (String) comboPretnje.getSelectedItem();
+					double ponder = Kontroler.getPonderPretnja(naziv);
+					String atraktivnostPretnje = (String) comboAtraktivnostPretnje.getSelectedItem();
+					if (naziv == null || naziv.equals("Pretnje")) {
+						JOptionPane.showMessageDialog(new GUIStrategija(), "Niste odabrali pretnju", "Greska",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else if (atraktivnostPretnje.isEmpty()) {
+						JOptionPane.showMessageDialog(new GUIStrategija(),
+								"Niste odabrali atraktivnost za odredjenu pretnju", "Greska",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						int atraktivnost = Integer.parseInt((String) comboAtraktivnostPretnje.getSelectedItem());
+						SwotStrat pomocna = new SwotStrat(naziv, ponder, atraktivnost);
+						novaStrategija.dodajPretnju(pomocna, atraktivnost);
+						comboPretnje.setSelectedItem("Pretnje");
+						comboAtraktivnostPretnje.setSelectedItem("");
+					}
+				}
+			});
+		}
+		return btnDodajPretnju;
+	}
+
 	private JPanel getPanel_2() {
 		if (panel_2 == null) {
 			panel_2 = new JPanel();
@@ -393,6 +486,13 @@ public class GUIStrategija extends JFrame {
 		return panel_2;
 	}
 
+	/**
+	 * Kreira i vraca dugme buttonSacuvaj koje kada se klikne racuna sumu
+	 * ukupnih atraktivnosti i strategiju ubacuje u listu
+	 * 
+	 * @return JButton
+	 * 
+	 */
 	private JButton getButtonSacuvaj() {
 		if (buttonSacuvaj == null) {
 			buttonSacuvaj = new JButton("Sacuvaj");
@@ -413,6 +513,12 @@ public class GUIStrategija extends JFrame {
 		return buttonSacuvaj;
 	}
 
+	/**
+	 * Kreira i vraca dugme buttonOtkazi koje kada se klikne zatvara prozor
+	 * 
+	 * @return JButton
+	 * 
+	 */
 	private JButton getButtonOtkazi() {
 		if (buttonOtkazi == null) {
 			buttonOtkazi = new JButton("Otkazi");
