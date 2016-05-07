@@ -177,10 +177,11 @@ public class Logika implements Serializable{
 	 */
 	public double vratiPonderSnagaNaziv(String naziv){
 		//dodaj kontrolu u gui-u da uopste ne moze da pozove ako je naziv null ili prazan
-		for (Swot swot : listaSnage) {
-			if(swot.getNaziv().equals(naziv))
-				return swot.getPonder();
-		}
+		if(naziv != null && naziv != "")
+			for (Swot swot : listaSnage) {
+				if(swot.getNaziv().equals(naziv))
+					return swot.getPonder();
+			}
 
 		return 0;//nece doci do ovoga kada se uvede kontrola
 	}
@@ -190,12 +191,14 @@ public class Logika implements Serializable{
 	 * @return double ponder odgovarajuce sanse
 	 */
 	public double vratiPonderSansaNaziv(String naziv){
-		//dodaj kontrolu u gui-u da uopste ne moze da pozove ako je naziv null ili prazan
-		for (Swot swot : listaSanse) {
-			if(swot.getNaziv().equals(naziv))
-				return swot.getPonder();
-		}
-		return 0;//nece doci do ovoga kada se uvede kontrola
+		// dodaj kontrolu u gui-u da uopste ne moze da pozove ako je naziv null
+		// ili prazan
+		if (naziv != null && naziv != "")
+			for (Swot swot : listaSanse) {
+				if (swot.getNaziv().equals(naziv))
+					return swot.getPonder();
+			}
+		return 0;// nece doci do ovoga kada se uvede kontrola
 	}
 	/**
 	 * Pretrazuje listu slabosti i vraca ponder odgovarajuce slabosti
@@ -204,11 +207,12 @@ public class Logika implements Serializable{
 	 */
 	public double vratiPonderSlabostNaziv(String naziv){
 		//dodaj kontrolu u gui-u da uopste ne moze da pozove ako je naziv null ili prazan
-		for (Swot swot : listaSlabosti) {
-			if(swot.getNaziv().equals(naziv))
-				return swot.getPonder();
-		}
-		return 0;//nece doci do ovoga kada se uvede kontrola
+		if (naziv != null && naziv != "")
+			for (Swot swot : listaSlabosti) {
+				if (swot.getNaziv().equals(naziv))
+					return swot.getPonder();
+			}
+		return 0;// nece doci do ovoga kada se uvede kontrola
 	}
 	/**
 	 * Pretrazuje listu pretnji i vraca ponder odgovarajuce pretnje
@@ -217,10 +221,11 @@ public class Logika implements Serializable{
 	 */
 	public double vratiPonderPretnjaNaziv(String naziv){
 		//dodaj kontrolu u gui-u da uopste ne moze da pozove ako je naziv null ili prazan
-		for (Swot swot : listaPretnje) {
-			if(swot.getNaziv().equals(naziv))
-				return swot.getPonder();
-		}
-		return 0;//nece doci do ovoga kada se uvede kontrola
+		if (naziv != null && naziv != "")
+			for (Swot swot : listaPretnje) {
+				if (swot.getNaziv().equals(naziv))
+					return swot.getPonder();
+			}
+		return 0;// nece doci do ovoga kada se uvede kontrola
 	}
 }
