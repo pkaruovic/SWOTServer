@@ -43,6 +43,7 @@ public class GlavniProzor extends JFrame {
 	private JMenu mnHelp;
 	private JMenuItem mntmOpen;
 	private JMenuItem mntmSave;
+	private JMenuItem mntmAbout;
 	private JPanel panel;
 	private JTable Snage;
 	private JTable Slabosti;
@@ -100,6 +101,7 @@ public class GlavniProzor extends JFrame {
 	private JMenu getMnHelp() {
 		if (mnHelp == null) {
 			mnHelp = new JMenu("Help");
+			mnHelp.add(getMntmAbout());
 		}
 		return mnHelp;
 	}
@@ -216,6 +218,18 @@ public class GlavniProzor extends JFrame {
 			Pretnje.getColumnModel().getColumn(1).setPreferredWidth(10);
 		}
 		return Pretnje;
+	}
+	
+	private JMenuItem getMntmAbout(){
+		if (mntmAbout == null) {
+			mntmAbout = new JMenuItem("About");
+			mntmAbout.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Kontroler.prikaziPodatkeOAutorima();
+				}
+			});
+		}
+		return mntmAbout;
 	}
 
 	private JMenuItem getMntmNew() {

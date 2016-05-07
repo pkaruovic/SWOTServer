@@ -212,6 +212,13 @@ public class Kontroler {
 		prozorZaStrategije.setLocationRelativeTo(null);
 	}
 	
+	public static void prikaziPodatkeOAutorima() {
+
+		JOptionPane.showMessageDialog(frame, "Autori:\nAndrija Djordjevic\nPetar Karuovic\nMiljan Jovic\n\nFON 2016");
+		
+	}
+	
+	
 //	public static void sortirajStrategijePoAtraktivnosti(){
 //		ArrayList<Strategija> sortirana = logika.getStrategije();
 //		
