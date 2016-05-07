@@ -63,7 +63,7 @@ public class Swot implements Serializable{
 	 */
 	@Override
 	public boolean equals(Object arg0) {
-		if (arg0 != null || !(arg0 instanceof Swot)) {
+		if (arg0 != null && arg0 instanceof Swot) {
 			Swot s = (Swot) arg0;
 
 			if (naziv.equals(s.getNaziv()) && ponder == s.getPonder()) {
