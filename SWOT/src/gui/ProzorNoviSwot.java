@@ -21,6 +21,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Klasa koja predstavlja prozor za dodavanje novog SWOT-a.
+ * 
+ * @author Andrija
+ *
+ */
 public class ProzorNoviSwot extends JFrame {
 
 	private JPanel contentPane;
@@ -52,19 +58,21 @@ public class ProzorNoviSwot extends JFrame {
 		contentPane.add(getPanel_1(), BorderLayout.SOUTH);
 		setLocationRelativeTo(null);
 		getGrupnjak();
-		
+
 	}
-	private ButtonGroup getGrupnjak(){
-		if(grupnjak == null){
+
+	private ButtonGroup getGrupnjak() {
+		if (grupnjak == null) {
 			grupnjak = new ButtonGroup();
 			grupnjak.add(getRdbtnSnaga());
 			grupnjak.add(getRdbtnSlabost());
 			grupnjak.add(getRdbtnSansa());
 			grupnjak.add(getRdbtnPretnja());
-			
+
 		}
 		return grupnjak;
 	}
+
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
@@ -79,6 +87,7 @@ public class ProzorNoviSwot extends JFrame {
 		}
 		return panel;
 	}
+
 	private JLabel getLblNaziv() {
 		if (lblNaziv == null) {
 			lblNaziv = new JLabel("Naziv");
@@ -86,6 +95,7 @@ public class ProzorNoviSwot extends JFrame {
 		}
 		return lblNaziv;
 	}
+
 	private JTextField getTxtNaziv() {
 		if (txtNaziv == null) {
 			txtNaziv = new JTextField();
@@ -94,6 +104,7 @@ public class ProzorNoviSwot extends JFrame {
 		}
 		return txtNaziv;
 	}
+
 	private JLabel getLblPonder() {
 		if (lblPonder == null) {
 			lblPonder = new JLabel("Ponder");
@@ -101,6 +112,7 @@ public class ProzorNoviSwot extends JFrame {
 		}
 		return lblPonder;
 	}
+
 	private JTextField getTxtPonder() {
 		if (txtPonder == null) {
 			txtPonder = new JTextField();
@@ -108,30 +120,35 @@ public class ProzorNoviSwot extends JFrame {
 		}
 		return txtPonder;
 	}
+
 	private JRadioButton getRdbtnSnaga() {
 		if (rdbtnSnaga == null) {
 			rdbtnSnaga = new JRadioButton("Snaga");
 		}
 		return rdbtnSnaga;
 	}
+
 	private JRadioButton getRdbtnSlabost() {
 		if (rdbtnSlabost == null) {
 			rdbtnSlabost = new JRadioButton("Slabost");
 		}
 		return rdbtnSlabost;
 	}
+
 	private JRadioButton getRdbtnSansa() {
 		if (rdbtnSansa == null) {
 			rdbtnSansa = new JRadioButton("Sansa");
 		}
 		return rdbtnSansa;
 	}
+
 	private JRadioButton getRdbtnPretnja() {
 		if (rdbtnPretnja == null) {
 			rdbtnPretnja = new JRadioButton("Pretnja");
 		}
 		return rdbtnPretnja;
 	}
+
 	private JPanel getPanel_1() {
 		if (panel_1 == null) {
 			panel_1 = new JPanel();
@@ -141,6 +158,14 @@ public class ProzorNoviSwot extends JFrame {
 		}
 		return panel_1;
 	}
+
+	/**
+	 * Dugme koje sluzi za dodavanje novog SWOT-a u odgovarajucu listu. Ukoliko
+	 * je korisnik nepravilno popunio trazena polja aktivira se novi prozor sa
+	 * porukom o gresci.
+	 * 
+	 * @return JButton
+	 */
 	private JButton getBtnSacuvaj() {
 		if (btnSacuvaj == null) {
 			btnSacuvaj = new JButton("Sacuvaj");
@@ -148,25 +173,33 @@ public class ProzorNoviSwot extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						Swot s = new Swot(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
-						if(rdbtnSnaga.isSelected() && !Kontroler.getListaSnage().contains(s)){
+						if (rdbtnSnaga.isSelected() && !Kontroler.getListaSnage().contains(s)) {
 							Kontroler.dodajSnagu(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
-						}else if(rdbtnSlabost.isSelected() && !Kontroler.getListaSlabosti().contains(s)){
+						} else if (rdbtnSlabost.isSelected() && !Kontroler.getListaSlabosti().contains(s)) {
 							Kontroler.dodajSlabost(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
-						}else if(rdbtnSansa.isSelected() && !Kontroler.getListaSanse().contains(s)){
+						} else if (rdbtnSansa.isSelected() && !Kontroler.getListaSanse().contains(s)) {
 							Kontroler.dodajSansu(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
-						}else if(rdbtnPretnja.isSelected() && !Kontroler.getListaPretnje().contains(s)){
+						} else if (rdbtnPretnja.isSelected() && !Kontroler.getListaPretnje().contains(s)) {
 							Kontroler.dodajPretnju(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
-						}else{
-							JOptionPane.showMessageDialog(rootPane, "Nepravilno ste popunili formu.", "Greska", JOptionPane.ERROR_MESSAGE, null);
+						} else {
+							JOptionPane.showMessageDialog(rootPane, "Nepravilno ste popunili formu.", "Greska",
+									JOptionPane.ERROR_MESSAGE, null);
 						}
 					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(rootPane, "Nepravilno ste popunili formu.", "Greska", JOptionPane.ERROR_MESSAGE, null);
-					} 
+						JOptionPane.showMessageDialog(rootPane, "Nepravilno ste popunili formu.", "Greska",
+								JOptionPane.ERROR_MESSAGE, null);
+					}
 				}
 			});
 		}
 		return btnSacuvaj;
 	}
+
+	/**
+	 * Dugme koje sluzi za gasenje prozora.
+	 * 
+	 * @return JButton
+	 */
 	private JButton getBtnOtkazi() {
 		if (btnOtkazi == null) {
 			btnOtkazi = new JButton("Otkazi");
