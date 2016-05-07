@@ -10,6 +10,7 @@ import org.junit.Test;
 
 public class LogikaTest {
 	Logika l;
+	private static final double DELTA = 1e-15; //mali broj, zbog odstupanja double-ova
 	@Before
 	public void setUp() throws Exception {
 		l = new Logika();
@@ -85,7 +86,7 @@ public class LogikaTest {
 		ArrayList<Swot> nova = new ArrayList<Swot>();
 		nova.add(new Swot("naziv", 0));
 		l.setListaPretnje(nova);
-		assertTrue(l.getListaPretnje().isEmpty());
+		assertFalse(l.getListaPretnje().isEmpty());
 	}
 
 	@Test
@@ -124,24 +125,109 @@ public class LogikaTest {
 		assertTrue(l.getListaPretnje().contains(nova));
 	}
 
+	@Test 
+	public void testVratiPonderSnagaNazivNull() {
+		double ponder = 0.5;
+		String naziv = "naziv";
+		
+		l.dodajSnaguUListu(naziv, ponder);
+		assertEquals(0, l.vratiPonderSnagaNaziv(null), DELTA);
+
+	}
 	@Test
-	public void testVratiPonderSnagaNaziv() {
-		fail("Not yet implemented");
+	public void testVratiPonderSnagaNazivPrazan() {
+		double ponder = 0.5;
+		String naziv = "naziv";
+		
+		l.dodajSnaguUListu(naziv, ponder);
+		assertEquals(0, l.vratiPonderSnagaNaziv(""), DELTA);
+	}
+	@Test
+	public void testVratiPonderSnagaNazivOk() {
+		double ponder = 0.5;
+		String naziv = "naziv";
+		
+		l.dodajSnaguUListu(naziv, ponder);
+		
+		assertEquals(ponder, l.vratiPonderSnagaNaziv(naziv), DELTA);
 	}
 
 	@Test
-	public void testVratiPonderSansaNaziv() {
-		fail("Not yet implemented");
+	public void testVratiPonderSansaNazivNull() {
+		double ponder = 0.5;
+		String naziv = "naziv";
+		
+		l.dodajSansuUListu(naziv, ponder);
+		assertEquals(0, l.vratiPonderSansaNaziv(null), DELTA);
+	}
+	@Test
+	public void testVratiPonderSansaNazivPrazan() {
+		double ponder = 0.5;
+		String naziv = "naziv";
+		
+		l.dodajSansuUListu(naziv, ponder);
+		assertEquals(0, l.vratiPonderSansaNaziv(""), DELTA);
+	}
+	@Test
+	public void testVratiPonderSansaNazivOk() {
+		double ponder = 0.5;
+		String naziv = "naziv";
+		
+		l.dodajSansuUListu(naziv, ponder);
+		
+		assertEquals(ponder, l.vratiPonderSansaNaziv(naziv),DELTA);
 	}
 
 	@Test
-	public void testVratiPonderSlabostNaziv() {
-		fail("Not yet implemented");
+	public void testVratiPonderSlabostNazivNull() {
+		double ponder = 0.5;
+		String naziv = "naziv";
+		
+		l.dodajSlabostUListu(naziv, ponder);
+		assertEquals(0, l.vratiPonderSlabostNaziv(null), DELTA);
+	}
+	@Test
+	public void testVratiPonderSlabostNazivPrazan() {
+		double ponder = 0.5;
+		String naziv = "naziv";
+		
+		l.dodajSlabostUListu(naziv, ponder);
+		assertEquals(0, l.vratiPonderSlabostNaziv(""), DELTA);
+	}
+	@Test
+	public void testVratiPonderSlabostNazivOk() {
+		double ponder = 0.5;
+		String naziv = "naziv";
+		
+		l.dodajSlabostUListu(naziv, ponder);
+		
+		assertEquals(ponder, l.vratiPonderSlabostNaziv(naziv), DELTA);
 	}
 
 	@Test
-	public void testVratiPonderPretnjaNaziv() {
-		fail("Not yet implemented");
+	public void testVratiPonderPretnjaNazivNull() {
+		double ponder = 0.5;
+		String naziv = "naziv";
+		
+		l.dodajPretnjuUListu(naziv, ponder);
+		assertEquals(0, l.vratiPonderPretnjaNaziv(null), DELTA);
+	}
+	@Test
+	public void testVratiPonderPretnjaNazivPrazan() {
+		double ponder = 0.5;
+		String naziv = "naziv";
+		
+		l.dodajPretnjuUListu(naziv, ponder);
+		assertEquals(0, l.vratiPonderPretnjaNaziv(""), DELTA);
+	}
+	@Test
+	public void testVratiPonderPretnjaNazivOk() {
+		double ponder = 0.5;
+		String naziv = "naziv";
+		
+		l.dodajPretnjuUListu(naziv, ponder);
+		
+		assertEquals(ponder, l.vratiPonderPretnjaNaziv(naziv), DELTA);
 	}
 
 }
