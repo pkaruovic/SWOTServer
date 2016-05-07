@@ -177,15 +177,11 @@ public class Logika implements Serializable{
 	 */
 	public double vratiPonderSnagaNaziv(String naziv){
 		//dodaj kontrolu u gui-u da uopste ne moze da pozove ako je naziv null ili prazan
-//		if(naziv == null || naziv.isEmpty())
-//		for (Swot swot : listaSnage) {
-//			if(swot.getNaziv().equals(naziv))
-//				return swot.getPonder();
-//		}
-		for(int i=0; i<listaSnage.size(); i++){
-			if(listaSnage.get(i).getNaziv().equals(naziv))
-				return listaSnage.get(i).getPonder();
-			}
+		for (Swot swot : listaSnage) {
+			if(swot.getNaziv().equals(naziv))
+				return swot.getPonder();
+		}
+
 		return 0;//nece doci do ovoga kada se uvede kontrola
 	}
 	/**
@@ -195,7 +191,6 @@ public class Logika implements Serializable{
 	 */
 	public double vratiPonderSansaNaziv(String naziv){
 		//dodaj kontrolu u gui-u da uopste ne moze da pozove ako je naziv null ili prazan
-		if(naziv == null || naziv.isEmpty())
 		for (Swot swot : listaSanse) {
 			if(swot.getNaziv().equals(naziv))
 				return swot.getPonder();
@@ -209,7 +204,6 @@ public class Logika implements Serializable{
 	 */
 	public double vratiPonderSlabostNaziv(String naziv){
 		//dodaj kontrolu u gui-u da uopste ne moze da pozove ako je naziv null ili prazan
-		if(naziv == null || naziv.isEmpty())
 		for (Swot swot : listaSlabosti) {
 			if(swot.getNaziv().equals(naziv))
 				return swot.getPonder();
@@ -223,7 +217,6 @@ public class Logika implements Serializable{
 	 */
 	public double vratiPonderPretnjaNaziv(String naziv){
 		//dodaj kontrolu u gui-u da uopste ne moze da pozove ako je naziv null ili prazan
-		if(naziv == null || naziv.isEmpty())
 		for (Swot swot : listaPretnje) {
 			if(swot.getNaziv().equals(naziv))
 				return swot.getPonder();
