@@ -17,6 +17,13 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Klasa koja predstavlja prozor za prikaz strategija sortiranih po
+ * atraktivnosti.
+ * 
+ * @author Petar
+ *
+ */
 public class GUIUporediStrategije extends JFrame {
 
 	private JPanel contentPane;
@@ -24,22 +31,6 @@ public class GUIUporediStrategije extends JFrame {
 	private JTable table;
 	private JPanel panel;
 	private JButton btnIzadji;
-
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					GUIUporediStrategije frame = new GUIUporediStrategije();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the frame.
@@ -55,6 +46,7 @@ public class GUIUporediStrategije extends JFrame {
 		contentPane.add(getScrollPane(), BorderLayout.CENTER);
 		contentPane.add(getPanel(), BorderLayout.SOUTH);
 	}
+
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
@@ -62,6 +54,7 @@ public class GUIUporediStrategije extends JFrame {
 		}
 		return scrollPane;
 	}
+
 	private JTable getTable() {
 		if (table == null) {
 			table = new JTable();
@@ -72,6 +65,7 @@ public class GUIUporediStrategije extends JFrame {
 		}
 		return table;
 	}
+
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
@@ -79,6 +73,12 @@ public class GUIUporediStrategije extends JFrame {
 		}
 		return panel;
 	}
+
+	/**
+	 * Dugme koje sluzi za gasenje prozora.
+	 * 
+	 * @return JButton
+	 */
 	private JButton getBtnIzadji() {
 		if (btnIzadji == null) {
 			btnIzadji = new JButton(" Izadji");
