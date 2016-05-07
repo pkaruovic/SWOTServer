@@ -35,11 +35,12 @@ public class SwotStratTest {
 		s.setAtraktivnost(1);
 		assertEquals(1, s.getAtraktivnost());
 	}
-	
+
 	@Test(expected = java.lang.RuntimeException.class)
 	public void testAtraktivnostNijeOk() {
 		s.setAtraktivnost(10);
 	}
+
 	@Test(expected = java.lang.RuntimeException.class)
 	public void testAtraktivnostNijeOk2() {
 		s.setAtraktivnost(-10);
@@ -50,15 +51,15 @@ public class SwotStratTest {
 		s.setNaziv("naziv");
 		assertEquals("naziv", s.getNaziv());
 	}
-	
+
 	@Test(expected = java.lang.RuntimeException.class)
 	public void testNazivNijeOk() {
 		s.setNaziv("");
 	}
+
 	@Test(expected = java.lang.RuntimeException.class)
 	public void testNazivNijeOk2() {
 		s.setNaziv(null);
 	}
-	
 
 }
