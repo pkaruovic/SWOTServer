@@ -34,7 +34,16 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
+/**
+ * Klasa koja predstavlja pocetni prozor aplikacije i glavnu radnu povrsinu za
+ * korisnika.
+ * 
+ * @author Petar
+ *
+ */
 public class GlavniProzor extends JFrame {
 
 	private JPanel contentPane;
@@ -62,12 +71,24 @@ public class GlavniProzor extends JFrame {
 	private JButton btnSwot;
 
 	public GlavniProzor() {
+		addWindowListener(new WindowAdapter() {
+
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				/**
+				 * Metoda koja poziva prozor za gasenje aplikacije.
+				 * 
+				 * @see kontrola.Kontroler#ugasiAplikaciju()
+				 */
+				Kontroler.ugasiAplikaciju();
+			}
+		});
 
 		setTitle("SWOT");
 
 		setPreferredSize(new Dimension(800, 600));
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 900, 700);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
@@ -106,6 +127,13 @@ public class GlavniProzor extends JFrame {
 		return mnHelp;
 	}
 
+	/**
+	 * Stavka menija koja poziva prozor za izbor i importovanje binarnog fajla
+	 * sa podacima o swot-ovima.
+	 * 
+	 * @see kontrola.Kontroler#deserijalizuj()
+	 * @return JMenuItem
+	 */
 	private JMenuItem getMntmOpen() {
 		if (mntmOpen == null) {
 			mntmOpen = new JMenuItem("Open");
@@ -114,13 +142,19 @@ public class GlavniProzor extends JFrame {
 					Kontroler.deserijalizuj();
 				}
 			});
-			
+
 			mntmOpen.setIcon(new ImageIcon(
 					GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/TreeOpen.gif")));
 		}
 		return mntmOpen;
 	}
 
+	/**
+	 * Stavka menija koja poziva prozor za cuvanje podataka o swot-ovima.
+	 * 
+	 * @see kontrola.Kontroler#serijalizuj(String)
+	 * @return JMenuItem
+	 */
 	private JMenuItem getMntmSave() {
 		if (mntmSave == null) {
 			mntmSave = new JMenuItem("Save");
@@ -138,21 +172,21 @@ public class GlavniProzor extends JFrame {
 					// panelD.add(new JLabel("Naziv fajla:"));
 					panelD.add(nazivFajla);
 					panelD.add(btnOk);
-					
+
 					btnOk.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							Kontroler.serijalizuj(nazivFajla.getText());
 							saveDialog.dispose();
-						//	saveDialog.setEnabled(false);
-							//saveDialog.setVisible(false);
-							
+							// saveDialog.setEnabled(false);
+							// saveDialog.setVisible(false);
+
 						}
 					});
 					saveDialog.getContentPane().add(panelD);
 					saveDialog.setTitle("Naziv fajla");
 					saveDialog.setVisible(true);
 					saveDialog.setResizable(false);
-				//	saveDialog.setModal(true);
+					// saveDialog.setModal(true);
 				}
 			});
 			mntmSave.setIcon(new ImageIcon(
@@ -219,8 +253,15 @@ public class GlavniProzor extends JFrame {
 		}
 		return Pretnje;
 	}
-	
-	private JMenuItem getMntmAbout(){
+
+	/**
+	 * Stavka menija koja kreira novi prozor sa informacijama o autorima i
+	 * godini izdanja.
+	 * 
+	 * @see kontrola.Kontroler#prikaziPodatkeOAutorima
+	 * @return jMenuItem
+	 */
+	private JMenuItem getMntmAbout() {
 		if (mntmAbout == null) {
 			mntmAbout = new JMenuItem("About");
 			mntmAbout.addActionListener(new ActionListener() {
@@ -232,6 +273,12 @@ public class GlavniProzor extends JFrame {
 		return mntmAbout;
 	}
 
+	/**
+	 * Stavka menija za ponovno pokretanje programa
+	 * 
+	 * @see kontrola.Kontroler#refresuj()
+	 * @return JMenuItem
+	 */
 	private JMenuItem getMntmNew() {
 		if (mntmNew == null) {
 			mntmNew = new JMenuItem("New");
@@ -241,17 +288,10 @@ public class GlavniProzor extends JFrame {
 					Kontroler.refresuj();
 				}
 			});
-			mntmNew.setIcon(new ImageIcon(GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/UpFolder.gif")));
+			mntmNew.setIcon(new ImageIcon(
+					GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/UpFolder.gif")));
 		}
-//=======
-//				public void actionPerformed(ActionEvent arg0) {
-//					Kontroler.noviProjekat();
-//				}
-//			});
-//			mntmNew.setIcon(new ImageIcon(
-//					GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/UpFolder.gif")));
-//>>>>>>> branch 'master' of https://github.com/JGRASS/project4-2016.git
-//		}
+
 		return mntmNew;
 	}
 
@@ -268,6 +308,12 @@ public class GlavniProzor extends JFrame {
 		return panel_1;
 	}
 
+	/**
+	 * Dugme za kreiranje novog prozora za prikaz strategija
+	 * 
+	 * @see kontrola.Kontroler#napraviProzorUporediStrategije()
+	 * @return
+	 */
 	private JButton getBtnUporediStrategije() {
 		if (btnUporediStrategije == null) {
 			btnUporediStrategije = new JButton(" Uporedi strategije");
@@ -281,6 +327,12 @@ public class GlavniProzor extends JFrame {
 		return btnUporediStrategije;
 	}
 
+	/**
+	 * Dugme koje kreira novi prozor za dodavanje strategije.
+	 * 
+	 * @see gui.GUIStrategija
+	 * @return JButton
+	 */
 	private JButton getBtnKreirajStrategiju() {
 		if (btnKreirajStrategiju == null) {
 			btnKreirajStrategiju = new JButton(" Kreiraj strategiju");
@@ -303,6 +355,12 @@ public class GlavniProzor extends JFrame {
 		return btnDodaj;
 	}
 
+	/**
+	 * Dugme koje kreira novi prozor za dodavanje swot-a.
+	 * 
+	 * @see gui.ProzorNoviSwot
+	 * @return
+	 */
 	private JButton getBtnSwot() {
 		if (btnSwot == null) {
 			btnSwot = new JButton("SWOT");
@@ -317,6 +375,11 @@ public class GlavniProzor extends JFrame {
 
 	}
 
+	/**
+	 * Stavka za gasenje programa
+	 * 
+	 * @return JMenuItem
+	 */
 	private JMenuItem getMntmExit() {
 		if (mntmExit == null) {
 			mntmExit = new JMenuItem("Exit");
@@ -363,23 +426,47 @@ public class GlavniProzor extends JFrame {
 		return scrollPane_3;
 	}
 
+	/**
+	 * Metoda za apdejtovanje tabele sa snagama.
+	 * 
+	 * @param listaSnage
+	 *            (lista sa snagama)
+	 */
 	public void srediTabeluSnage(ArrayList<Swot> listaSnage) {
-		ModelTabele mt = (ModelTabele)Snage.getModel();
+		ModelTabele mt = (ModelTabele) Snage.getModel();
 		mt.osveziTabelu(listaSnage);
 	}
 
+	/**
+	 * Metoda za apdejtovanje tabele sa slabostima.
+	 * 
+	 * @param listaSlabosti
+	 *            (lista sa slabostima)
+	 */
 	public void srediTabeluSlabosti(ArrayList<Swot> listaSlabosti) {
-		ModelTabele mt = (ModelTabele)Slabosti.getModel();
+		ModelTabele mt = (ModelTabele) Slabosti.getModel();
 		mt.osveziTabelu(listaSlabosti);
 	}
-	
+
+	/**
+	 * Metoda za apdejtovanje tabele sa sansama.
+	 * 
+	 * @param listaSanse
+	 *            (lista sa sansama)
+	 */
 	public void srediTabeluSanse(ArrayList<Swot> listaSanse) {
-		ModelTabele mt = (ModelTabele)Sanse.getModel();
+		ModelTabele mt = (ModelTabele) Sanse.getModel();
 		mt.osveziTabelu(listaSanse);
 	}
-	
+
+	/**
+	 * Metoda za apdejtovanje tabele sa pretnjama.
+	 * 
+	 * @param listaPretnje
+	 *            (lista sa pretnjama)
+	 */
 	public void srediTabeluPretnje(ArrayList<Swot> listaPretnje) {
-		ModelTabele mt = (ModelTabele)Pretnje.getModel();
+		ModelTabele mt = (ModelTabele) Pretnje.getModel();
 		mt.osveziTabelu(listaPretnje);
 	}
 }
