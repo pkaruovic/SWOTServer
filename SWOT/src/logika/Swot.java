@@ -34,4 +34,15 @@ public class Swot implements Serializable{
 			throw new RuntimeException("ponder");
 		this.ponder = ponder;
 	}
+	
+	@Override
+	public boolean equals(Object arg0) {
+		Swot s = (Swot)arg0;
+		
+		if(naziv.equals(s.getNaziv()) && ponder == s.getPonder()){
+			return true;
+		}
+		
+		return false;
+	}
 }

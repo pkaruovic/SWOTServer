@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import kontrola.Kontroler;
+import logika.Swot;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -146,16 +147,17 @@ public class ProzorNoviSwot extends JFrame {
 			btnSacuvaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						if(rdbtnSnaga.isSelected()){
+						Swot s = new Swot(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
+						if(rdbtnSnaga.isSelected() && !Kontroler.getListaSnage().contains(s)){
 							Kontroler.dodajSnagu(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
-						}else if(rdbtnSlabost.isSelected()){
+						}else if(rdbtnSlabost.isSelected() && !Kontroler.getListaSlabosti().contains(s)){
 							Kontroler.dodajSlabost(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
-						}else if(rdbtnSansa.isSelected()){
+						}else if(rdbtnSansa.isSelected() && !Kontroler.getListaSanse().contains(s)){
 							Kontroler.dodajSansu(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
-						}else if(rdbtnPretnja.isSelected()){
+						}else if(rdbtnPretnja.isSelected() && !Kontroler.getListaPretnje().contains(s)){
 							Kontroler.dodajPretnju(txtNaziv.getText(), Double.parseDouble(txtPonder.getText()));
 						}else{
-							JOptionPane.showMessageDialog(rootPane, "Niste izabrali tip SWOT-a", "Greska", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(rootPane, "Nepravilno ste popunili formu.", "Greska", JOptionPane.ERROR_MESSAGE, null);
 						}
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(rootPane, "Nepravilno ste popunili formu.", "Greska", JOptionPane.ERROR_MESSAGE, null);
