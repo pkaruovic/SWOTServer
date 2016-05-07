@@ -36,6 +36,8 @@ public class SwotStrat extends Swot implements Serializable{
 	 * @param atraktivnost
 	 */
 	public void setAtraktivnost(int atraktivnost) {
+		if(atraktivnost < 0 || atraktivnost > 4)
+			throw new RuntimeException("atraktivnost je van granica");
 		this.atraktivnost = atraktivnost;
 		ukupnaAtraktivnost = super.getPonder() * atraktivnost;
 	}
