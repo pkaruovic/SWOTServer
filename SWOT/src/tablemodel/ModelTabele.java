@@ -11,7 +11,7 @@ import logika.Swot;
  * Klasa koja sadrzi podatke za prikaz u swot tabelama i odgovarajuce metode za
  * manipulaciju nad njima.
  * 
- * @author Petar
+ * @author Petar Karuovic
  *
  */
 public class ModelTabele extends AbstractTableModel {

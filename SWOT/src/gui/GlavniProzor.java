@@ -41,7 +41,7 @@ import java.awt.event.WindowEvent;
  * Klasa koja predstavlja pocetni prozor aplikacije i glavnu radnu povrsinu za
  * korisnika.
  * 
- * @author Petar
+ * @author Petar Karuovic
  *
  */
 public class GlavniProzor extends JFrame {
@@ -89,7 +89,7 @@ public class GlavniProzor extends JFrame {
 		setPreferredSize(new Dimension(800, 600));
 
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 900, 700);
+		setBounds(100, 100, 927, 700);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -298,7 +298,7 @@ public class GlavniProzor extends JFrame {
 	private JPanel getPanel_1() {
 		if (panel_1 == null) {
 			panel_1 = new JPanel();
-			panel_1.setPreferredSize(new Dimension(140, 10));
+			panel_1.setPreferredSize(new Dimension(150, 10));
 			panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			panel_1.add(getBtnSwot());
 			panel_1.add(getBtnKreirajStrategiju());
@@ -322,7 +322,7 @@ public class GlavniProzor extends JFrame {
 					Kontroler.napraviProzorUporediStrategije();
 				}
 			});
-			btnUporediStrategije.setPreferredSize(new Dimension(130, 23));
+			btnUporediStrategije.setPreferredSize(new Dimension(140, 23));
 		}
 		return btnUporediStrategije;
 	}
@@ -342,7 +342,7 @@ public class GlavniProzor extends JFrame {
 					prozorNovaStrategija.setVisible(true);
 				}
 			});
-			btnKreirajStrategiju.setPreferredSize(new Dimension(130, 23));
+			btnKreirajStrategiju.setPreferredSize(new Dimension(140, 23));
 		}
 		return btnKreirajStrategiju;
 	}
@@ -369,7 +369,7 @@ public class GlavniProzor extends JFrame {
 					Kontroler.napraviProzorNoviSwot();
 				}
 			});
-			btnSwot.setPreferredSize(new Dimension(130, 20));
+			btnSwot.setPreferredSize(new Dimension(140, 20));
 		}
 		return btnSwot;
 

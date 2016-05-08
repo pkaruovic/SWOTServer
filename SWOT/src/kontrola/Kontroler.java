@@ -278,21 +278,7 @@ public class Kontroler {
 		prozorNoviSwot.setVisible(true);
 		prozorNoviSwot.setLocationRelativeTo(null);
 	}
-//	public static void noviProjekat() {
-//		isprazniTabele();
-//		isprazniListe();
-//	}
-//
-//	private static void isprazniListe() {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	private static void isprazniTabele() {
-//		// TODO Auto-generated method stub
-//		
-//
-//	}
+
 	/**
 	 * Kreira i prikazuje prozor za prikaz i poredjenje strategija.
 	 */
@@ -310,21 +296,6 @@ public class Kontroler {
 		
 	}
 	
-	
-//	public static void sortirajStrategijePoAtraktivnosti(){
-//		ArrayList<Strategija> sortirana = logika.getStrategije();
-//		
-//		for(int i=0; i<sortirana.size(); i++){
-//			for(int j=i+1; j<sortirana.size(); j++){
-//				if(sortirana.get(i).getSumaUkupnihAtraktivnosti() < sortirana.get(j).getSumaUkupnihAtraktivnosti()){
-//					Strategija s = sortirana.get(i);
-//					sortirana.set(i, sortirana.get(j));
-//					sortirana.set(j, s);
-//				}
-//			}
-//		}
-//		logika.setStrategije(sortirana);
-//	}
 	/**
 	 * Poziva se klikom na dugme New. Pravi nove objekte klasa Logika i GlavniProzor sa praznim listama.
 	 */
@@ -337,7 +308,7 @@ public class Kontroler {
 					frame = new GlavniProzor();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(frame, e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
  * Klasa koja predstavlja prozor za prikaz strategija sortiranih po
  * atraktivnosti.
  * 
- * @author Petar
+ * @author Petar Karuovic
  *
  */
 public class GUIUporediStrategije extends JFrame {

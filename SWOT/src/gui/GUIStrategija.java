@@ -80,28 +80,17 @@ public class GUIStrategija extends JFrame {
 			panel = new JPanel();
 			panel.add(getComboSnage());
 			panel.add(getComboAtraktivnostSnage());
-			comboAtraktivnostSnage.setVisible(false);
 			panel.add(getBtnDodajSnagu());
-			btnDodajSnagu.setVisible(false);
 			panel.add(getComboSlabosti());
-			comboSlabosti.setVisible(false);
 			panel.add(getComboAtraktivnostSlabosti());
-			comboAtraktivnostSlabosti.setVisible(false);
 			panel.add(getBtnDodajSlabost());
-			btnDodajSlabost.setVisible(false);
 			panel.add(getComboSanse());
-			comboSanse.setVisible(false);
 			panel.add(getComboAtraktivnostSanse());
-			comboAtraktivnostSanse.setVisible(false);
 			panel.add(getBtnDodajSansu());
-			btnDodajSansu.setVisible(false);
 			panel.add(getComboPretnje());
-			comboPretnje.setVisible(false);
 			panel.add(getComboAtraktivnostPretnje());
-			comboAtraktivnostPretnje.setVisible(false);
 			panel.add(getBtnDodajPretnju());
-			btnDodajPretnju.setVisible(false);
-
+			iskljuciVidljivost();
 		}
 		return panel;
 	}
@@ -308,20 +297,7 @@ public class GUIStrategija extends JFrame {
 					} else {
 						novaStrategija = Kontroler.kreirajStrategiju(textNazivStrategije.getText());
 						if (!Kontroler.getListaStrategija().contains(novaStrategija)) {
-							comboSnage.setVisible(true);
-							comboAtraktivnostSnage.setVisible(true);
-							comboSlabosti.setVisible(true);
-							comboAtraktivnostSlabosti.setVisible(true);
-							comboSanse.setVisible(true);
-							comboAtraktivnostSanse.setVisible(true);
-							comboPretnje.setVisible(true);
-							comboAtraktivnostPretnje.setVisible(true);
-							btnDodajPretnju.setVisible(true);
-							btnDodaj.setVisible(true);
-							btnDodajSnagu.setVisible(true);
-							btnDodajSlabost.setVisible(true);
-							btnDodajSansu.setVisible(true);
-							buttonSacuvaj.setVisible(true);
+							ukljuciVidljivost();
 						} else {
 							JOptionPane.showMessageDialog(new GUIStrategija(), "Ova strategija vec postoji", "Greska",
 									JOptionPane.INFORMATION_MESSAGE);
@@ -346,6 +322,10 @@ public class GUIStrategija extends JFrame {
 			btnDodajSnagu.setPreferredSize(new Dimension(115, 23));
 			btnDodajSnagu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					if(novaStrategija == null){
+						JOptionPane.showMessageDialog(new GUIStrategija(), "Niste kreirali strategiju", "Greska", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
 					String naziv = (String) comboSnage.getSelectedItem();
 					double ponder = Kontroler.getPonderSnaga(naziv);
 					String atraktivnostSnage = (String) comboAtraktivnostSnage.getSelectedItem();
@@ -382,6 +362,10 @@ public class GUIStrategija extends JFrame {
 			btnDodajSlabost.setPreferredSize(new Dimension(115, 23));
 			btnDodajSlabost.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					if(novaStrategija == null){
+						JOptionPane.showMessageDialog(new GUIStrategija(), "Niste kreirali strategiju", "Greska", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
 					String naziv = (String) comboSlabosti.getSelectedItem();
 					double ponder = Kontroler.getPonderSlabost(naziv);
 					String atraktivnostSlabosti = (String) comboAtraktivnostSlabosti.getSelectedItem();
@@ -418,6 +402,10 @@ public class GUIStrategija extends JFrame {
 			btnDodajSansu.setPreferredSize(new Dimension(115, 23));
 			btnDodajSansu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					if(novaStrategija == null){
+						JOptionPane.showMessageDialog(new GUIStrategija(), "Niste kreirali strategiju", "Greska", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
 					String naziv = (String) comboSanse.getSelectedItem();
 					double ponder = Kontroler.getPonderSansa(naziv);
 					String atraktivnostSanse = (String) comboAtraktivnostSanse.getSelectedItem();
@@ -454,6 +442,10 @@ public class GUIStrategija extends JFrame {
 			btnDodajPretnju.setPreferredSize(new Dimension(115, 23));
 			btnDodajPretnju.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					if(novaStrategija == null){
+						JOptionPane.showMessageDialog(new GUIStrategija(), "Niste kreirali strategiju", "Greska", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
 					String naziv = (String) comboPretnje.getSelectedItem();
 					double ponder = Kontroler.getPonderPretnja(naziv);
 					String atraktivnostPretnje = (String) comboAtraktivnostPretnje.getSelectedItem();
@@ -504,7 +496,9 @@ public class GUIStrategija extends JFrame {
 					} else {
 						novaStrategija.izracunajSumuUkupnihAtraktivnosti();
 						Kontroler.dodajStrategiju(novaStrategija);
+						novaStrategija = null;
 						textNazivStrategije.setText("");
+						iskljuciVidljivost();
 					}
 				}
 			});
@@ -529,5 +523,41 @@ public class GUIStrategija extends JFrame {
 			});
 		}
 		return buttonOtkazi;
+	}
+	/**
+	 * Metoda postavlja vidljivost svih komponenti na true.
+	 */
+	public void ukljuciVidljivost(){
+		comboSnage.setVisible(true);
+		comboAtraktivnostSnage.setVisible(true);
+		comboSlabosti.setVisible(true);
+		comboAtraktivnostSlabosti.setVisible(true);
+		comboSanse.setVisible(true);
+		comboAtraktivnostSanse.setVisible(true);
+		comboPretnje.setVisible(true);
+		comboAtraktivnostPretnje.setVisible(true);
+		btnDodajPretnju.setVisible(true);
+		btnDodaj.setVisible(true);
+		btnDodajSnagu.setVisible(true);
+		btnDodajSlabost.setVisible(true);
+		btnDodajSansu.setVisible(true);
+		buttonSacuvaj.setVisible(true);
+	}
+	/**
+	 * Metoda postavlja vidljivost svih komponenti na false.
+	 */
+	public void iskljuciVidljivost(){
+		comboSnage.setVisible(false);
+		comboAtraktivnostSnage.setVisible(false);
+		comboSlabosti.setVisible(false);
+		comboAtraktivnostSlabosti.setVisible(false);
+		comboSanse.setVisible(false);
+		comboAtraktivnostSanse.setVisible(false);
+		comboPretnje.setVisible(false);
+		comboAtraktivnostPretnje.setVisible(false);
+		btnDodajPretnju.setVisible(false);
+		btnDodajSnagu.setVisible(false);
+		btnDodajSlabost.setVisible(false);
+		btnDodajSansu.setVisible(false);
 	}
 }

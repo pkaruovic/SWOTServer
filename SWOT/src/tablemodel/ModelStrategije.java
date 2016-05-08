@@ -10,7 +10,7 @@ import logika.Strategija;
  * Klasa koja sadrzi podatke iz tabele za poredjenje strategija i metode za
  * manipulaciju tim podacima.
  * 
- * @author Petar
+ * @author Petar Karuovic
  *
  */
 public class ModelStrategije extends AbstractTableModel {

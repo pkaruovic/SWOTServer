@@ -24,7 +24,7 @@ import java.awt.event.ActionEvent;
 /**
  * Klasa koja predstavlja prozor za dodavanje novog SWOT-a.
  * 
- * @author Andrija
+ * @author Andrija Djordjevic
  *
  */
 public class ProzorNoviSwot extends JFrame {
