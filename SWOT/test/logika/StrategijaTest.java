@@ -115,6 +115,63 @@ public class StrategijaTest {
 			fail();
 	}
 	
+	@Test
+	public void testSumaUkupnihAtraktivnostiSveOk() {
+		SwotStrat swot = new SwotStrat("swot", 1, 1);
+		
+		s.dodajSnagu(swot, swot.getAtraktivnost());
+		s.dodajSlabost(swot, swot.getAtraktivnost());
+		s.dodajSansu(swot, swot.getAtraktivnost());
+		s.dodajPretnju(swot, swot.getAtraktivnost());
+		
+		s.izracunajSumuUkupnihAtraktivnosti();
+		
+		assertEquals(4, s.getSumaUkupnihAtraktivnosti(), 0);
+	}
+	
+	@Test
+	public void testSumaUkupnihAtraktivnostiSveOk2() {
+		SwotStrat swot = new SwotStrat("swot", 1, 1);
+		
+		s.dodajSnagu(swot, swot.getAtraktivnost());
+		s.dodajSlabost(swot, swot.getAtraktivnost());
+		s.dodajSansu(swot, swot.getAtraktivnost());
+		
+		s.izracunajSumuUkupnihAtraktivnosti();
+		
+		assertEquals(3, s.getSumaUkupnihAtraktivnosti(), 0);
+	}
+	
+	@Test
+	public void testSumaUkupnihAtraktivnostiSveOk3() {
+		SwotStrat swot = new SwotStrat("swot", 1, 1);
+		
+		s.dodajSnagu(swot, swot.getAtraktivnost());
+		s.dodajSlabost(swot, swot.getAtraktivnost());
+		s.dodajPretnju(swot, swot.getAtraktivnost());
+		
+		s.izracunajSumuUkupnihAtraktivnosti();
+		
+		assertEquals(3, s.getSumaUkupnihAtraktivnosti(), 0);
+	}
+	
+	@Test
+	public void testSumaUkupnihAtraktivnostiSveOk4() {
+		SwotStrat swot = new SwotStrat("swot", 1, 1);
+		
+		s.dodajSnagu(swot, swot.getAtraktivnost());
+		
+		s.izracunajSumuUkupnihAtraktivnosti();
+		
+		assertEquals(1, s.getSumaUkupnihAtraktivnosti(), 0);
+	}
+	
+	@Test
+	public void testSumaUkupnihAtraktivnostiSveOk5() {		
+		s.izracunajSumuUkupnihAtraktivnosti();
+		
+		assertEquals(0, s.getSumaUkupnihAtraktivnosti(), 0);
+	}
 	
 
 }
