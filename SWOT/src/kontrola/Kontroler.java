@@ -394,5 +394,7 @@ public class Kontroler {
 
 	public static void ugasiServer() {
 		server.ugasiNit();
+		logika.setStrategije((ArrayList<Strategija>)server.vratiStrategije());
+		JOptionPane.showMessageDialog(frame, "Server je ugasen", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
 	}
 }
