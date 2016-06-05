@@ -69,6 +69,8 @@ public class GlavniProzor extends JFrame {
 	private JScrollPane scrollPane_2;
 	private JScrollPane scrollPane_3;
 	private JButton btnSwot;
+	private JButton btnPokreniServer;
+	private JButton btnUgasiServer;
 
 	public GlavniProzor() {
 		addWindowListener(new WindowAdapter() {
@@ -303,6 +305,8 @@ public class GlavniProzor extends JFrame {
 			panel_1.add(getBtnSwot());
 			panel_1.add(getBtnKreirajStrategiju());
 			panel_1.add(getBtnUporediStrategije());
+			panel_1.add(getBtnPokreniServer());
+			panel_1.add(getBtnUgasiServer());
 			// panel_1.add(getBtnDodaj());
 		}
 		return panel_1;
@@ -468,5 +472,29 @@ public class GlavniProzor extends JFrame {
 	public void srediTabeluPretnje(ArrayList<Swot> listaPretnje) {
 		ModelTabele mt = (ModelTabele) Pretnje.getModel();
 		mt.osveziTabelu(listaPretnje);
+	}
+	private JButton getBtnPokreniServer() {
+		if (btnPokreniServer == null) {
+			btnPokreniServer = new JButton("Pokreni server");
+			btnPokreniServer.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Kontroler.pokreniServer();
+				}
+			});
+			btnPokreniServer.setPreferredSize(new Dimension(140, 23));
+		}
+		return btnPokreniServer;
+	}
+	private JButton getBtnUgasiServer() {
+		if (btnUgasiServer == null) {
+			btnUgasiServer = new JButton("Ugasi server");
+			btnUgasiServer.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Kontroler.ugasiServer();
+				}
+			});
+			btnUgasiServer.setPreferredSize(new Dimension(140, 23));
+		}
+		return btnUgasiServer;
 	}
 }
